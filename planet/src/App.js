@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ButtonAppBar from './Containers/ButtonAppBar'
 import Login from './Containers/Login'
+import Signup from './Containers/Signup'
 
 import './App.css';
 import PropTypes from 'prop-types';
@@ -48,7 +49,7 @@ class App extends Component {
     <div className="App">
 
       <ButtonAppBar/>
-      <Login />
+      <Login/>
     </div>
     );
   }
