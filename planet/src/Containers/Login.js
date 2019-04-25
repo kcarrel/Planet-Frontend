@@ -56,7 +56,6 @@ class Login extends Component {
   }
 
   handleChange = (ev) => {
-
     this.setState({[ev.target.name]: ev.target.value})
   }
 
@@ -106,7 +105,7 @@ class Login extends Component {
             <InputLabel >Password</InputLabel>
             <Input name="password" type="password" id="password" onChange={this.handleChange} value={this.state.password} autoComplete="current-password" />
           </FormControl>
-          
+
           <Button
             onClick={this.handleSubmit}
             type="submit"

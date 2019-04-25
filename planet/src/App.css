@@ -1,5 +1,14 @@
+body {
+  background-image: url('./images/star-background.jpg');
+  background-size: cover;
+  height: 100vh;
+  background-repeat: no-repeat;
+
+}
+
 .App {
   text-align: center;
+
 }
 
 .App-logo {

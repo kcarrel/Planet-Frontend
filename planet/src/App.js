@@ -49,7 +49,7 @@ class App extends Component {
     <div className="App">
 
       <ButtonAppBar/>
-      <Login/>
+      <Signup />
     </div>
     );
   }
