@@ -231,6 +231,7 @@ const styles = theme => ({
         console.log('hi', json)
         localStorage.setItem('UserID', json.user.id);
         localStorage.setItem('Token', json.token);
+        localStorage.setItem('Email', json.user.email);
         this.createProfile()
       })
     }
@@ -262,6 +263,14 @@ const styles = theme => ({
     .then(r => r.json())
     .then(json => {
       console.log('hi', json)
+      localStorage.setItem('UserLocation', json.location);
+      localStorage.setItem('UserImage', json.image);
+      localStorage.setItem('UserPronouns', json.pronouns);
+      localStorage.setItem('UserAge', json.age);
+      localStorage.setItem('UserMax', json.max_age_preference);
+      localStorage.setItem('UserMin', json.min_age_preference);
+      localStorage.setItem('UserBio', json.biography);
+      localStorage.setItem('UserGenderPref', json.gender_preference);
 
     })
   }

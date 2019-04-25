@@ -77,9 +77,31 @@ class Login extends Component {
     })
       .then(r => r.json())
       .then(json => {
-        console.log('hi', json)
         localStorage.setItem('UserID', json.user.id);
         localStorage.setItem('Token', json.token);
+        this.getProfile()
+    })
+  }
+
+  getProfile() {
+    fetch((`http://localhost:3000/profiles/${localStorage.getItem('UserID')}`), {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('Token')}`
+      }
+    })
+    .then(r => r.json())
+    .then(json => {
+      localStorage.setItem('UserLocation', json.location);
+      localStorage.setItem('UserImage', json.image);
+      localStorage.setItem('UserPronouns', json.pronouns);
+      localStorage.setItem('UserAge', json.age);
+      localStorage.setItem('UserMax', json.max_age_preference);
+      localStorage.setItem('UserMin', json.min_age_preference);
+      localStorage.setItem('UserBio', json.biography);
+      localStorage.setItem('UserGenderPref', json.gender_preference);
     })
   }
 
