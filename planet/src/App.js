@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ButtonAppBar from './Containers/ButtonAppBar'
 import Login from './Containers/Login'
 import Signup from './Containers/Signup'
+import Home from './Containers/Home'
 
 import './App.css';
 import PropTypes from 'prop-types';
@@ -49,7 +50,7 @@ class App extends Component {
     <div className="App">
 
       <ButtonAppBar/>
-      <Signup />
+      <Home />
     </div>
     );
   }

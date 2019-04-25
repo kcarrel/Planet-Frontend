@@ -212,41 +212,41 @@ const styles = theme => ({
       }
   }
 
-  signupUser() {
-    fetch('http://localhost:3000/users', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    },
-    body: JSON.stringify({
-      user: {
-        email: this.state.email,
-        password: this.state.password,
-      }
+    signupUser() {
+      fetch('http://localhost:3000/users', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          email: this.state.email,
+          password: this.state.password,
+        }
+      })
     })
-  })
-    .then(r => r.json())
-    .then(json => {
-      console.log('hi', json)
-      localStorage.setItem('UserID', json.user.id);
-      localStorage.setItem('Token', json.token);
-  })
-  }
+      .then(r => r.json())
+      .then(json => {
+        console.log('hi', json)
+        localStorage.setItem('UserID', json.user.id);
+        localStorage.setItem('Token', json.token);
+        this.createProfile()
+      })
+    }
 
   createProfile() {
     console.log('make a damn profile')
-    fetch('http://localhost:3000/new', {
+    fetch('http://localhost:3000/profiles', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('Token')}`
     },
     body: JSON.stringify({
       profile: {
         user_id: localStorage.getItem("UserID"),
-        email: this.state.email,
-        password: this.state.password,
         name: this.state.name,
         pronouns: this.state.pronouns,
         age: this.state.age,
@@ -420,6 +420,7 @@ const styles = theme => ({
           />
 
           <TextField
+            name='biography'
             placeholder="Describe the very essence of your being or die alone!"
             multiline={true}
             rows={4}
