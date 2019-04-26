@@ -17,6 +17,10 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
+import { Link } from 'react-router-dom';
+
 
 const styles = theme => ({
   main: {
@@ -59,6 +63,11 @@ const styles = theme => ({
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
   },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
 });
 
 class Suggestions extends Component {
@@ -68,11 +77,12 @@ class Suggestions extends Component {
       yelp: [],
       ticketmaster: [],
       location: '',
-      date: ''
+      date: '',
+      category: '',
+      yelpActive: null
     }
-    this.fetchYelp()
-    this.fetchTicketmaster()
   }
+
 
 
   //fetch down Yelp suggestions(20 at a time)
@@ -91,16 +101,34 @@ class Suggestions extends Component {
 
   //fetch down TicketMaster suggestions
   fetchTicketmaster() {
-    fetch('https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&city=Seattle&apikey=hwrR44RmwHzBP1VteR2Adcd5ObVsALUR')
+    let category = this.state.category
+    let location = localStorage.getItem("UserLocation")
+    let date = this.state.date
+    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=hwrR44RmwHzBP1VteR2Adcd5ObVsALUR`)
     .then(resp => resp.json())
     .then(data => {
       this.setState({ticketmaster: data._embedded.events})
     })
   }
 
+  handleChange = (ev) => {
+    this.setState({[ev.target.name]: ev.target.value})
+  }
+
+  handleSubmit = (ev) => {
+    ev.preventDefault()
+    if (this.state.category === 'event') {
+      this.setState({yelpActive: false})
+      this.fetchTicketmaster()
+    } else {
+      this.setState({yelpActive: true})
+      this.fetchYelp()
+
+    }
+  }
 
   render() {
-
+    //from material ui
     const { classes } = this.props;
     return (
       <main className={classes.main}>
@@ -110,55 +138,131 @@ class Suggestions extends Component {
             Date Suggestion Generator
           </Typography>
           <form className={classes.form}>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel >Email Address</InputLabel>
-              <Input id="email" name="email" onChange={this.handleChange} value={this.state.email} autoComplete="email" autoFocus />
+          <FormControl margin="normal" >
+
+              <TextField
+              id="category"
+              select
+              label="Select"
+              className={classes.textField}
+              value={this.state.category}
+              name="category"
+              onChange={this.handleChange}
+              SelectProps={{
+                MenuProps: {
+                  className: classes.menu,
+                },
+              }}
+              helperText="Type of date"
+              margin="normal"
+                >
+                <MenuItem key='event' value='event'>
+                  Event(concert, show, etc...)
+                </MenuItem>
+
+                <MenuItem key='restaurant' value='restaurant'>
+                  Restaurant
+                </MenuItem>
+
+                <MenuItem key='bar' value='bar'>
+                  Bar
+                </MenuItem>
+
+                <MenuItem key='fitness' value='fitness'>
+                  Fitness
+                </MenuItem>
+
+                <MenuItem key='arts' value='arts'>
+                  Art/Culture
+                </MenuItem>
+
+                </TextField>
             </FormControl>
-            <FormControl margin="normal" required fullWidth>
-              <InputLabel >Password</InputLabel>
-              <Input name="password" type="password" id="password" onChange={this.handleChange} value={this.state.password} autoComplete="current-password" />
+
+            <FormControl  margin="normal" >
+            <TextField
+              id="datetime-local"
+              type="date"
+              name='date'
+              defaultValue="2017-05-24T10:30"
+              className={classes.textField}
+              onChange={this.handleChange}
+              InputLabelProps={{
+                shrink: true,
+              }}
+            />
             </FormControl>
+
 
             <Button
               onClick={this.handleSubmit}
               type="submit"
-              fullWidth
+              sizeLarge
               variant="contained"
               color="primary"
-              className={classes.submit}
-            >
-              Login
+              className={classes.submit}>
+              Generate
             </Button>
           </form>
         </Paper>
 
+        { this.state.yelpActive ? (
+          this.state.yelp.map(data => {
+          return <a target="_blank" href={data.url}>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                className={classes.media}
+                height="200"
+                src={(data.image_url)}
+                title="Date Planet"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {data.name}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {data.location.display_address[0]} {data.location.display_address[1]}
+                </Typography>
+              </CardContent>
+            </CardActionArea>
 
+          </Card>
+          </a>
+        })
+        ) : (
+          this.state.ticketmaster.map(data => {
+            let url = data.url
+          return <a target="_blank" href={url}>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                className={classes.media}
+                height="50%"
+                src={(data.images[0].url)}
+                title="Date Planet"
+                target={data.url}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h4" component="h2">
+                  {data.name}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {data.dates.localDate}
+                </Typography>
 
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            className={classes.media}
-            height="600"
-            image={require("../images/suggetions.png")}
-            title="Date Planet"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h4" component="h2">
-              Greenlake, Dog and Drinks?
-            </Typography>
-            <Typography gutterBottom variant="h5" component="h2">
-              04/29/2019 at 6:30 PM
-            </Typography>
-            <Typography component="p">
-              My dog, Smokey, and I would love to meet you at Greenlake on Monday for a walk around the lake then dinner and drinks at Shelter.
-              Smokey is a friendly pitbull and I'm an equally friendly tech non-bro!
-            </Typography>
-          </CardContent>
-        </CardActionArea>
+              </CardContent>
+            </CardActionArea>
 
-      </Card>
+          </Card>
+          </a>
+        })
+      )}
+
     </main>
     );
   }
