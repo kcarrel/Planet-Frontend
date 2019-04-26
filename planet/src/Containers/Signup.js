@@ -124,25 +124,20 @@ const styles = theme => ({
     ev.preventDefault()
     console.log('u trynna submit')
     //sorting the specified gender of user and matching user's gender preferences for partner before persisting to database
-      if (this.state.gender_preference_men && this.state.gender_preference_women && this.state.gender_preference_nonbinary) {
-          this.setState({gender_preference: 'all'}, () => {
-            this.signupUser()
-          })
-      } else if (this.state.gender_preference_men && this.state.gender_preference_women)   {
+      if (this.state.gender_preference_men && this.state.gender_preference_women)   {
         if (this.state.pronouns === 'he/him') {
-          this.setState({gender_preference: 'mmw'}, () => {
+          this.setState({gender_preference: 'mall'}, () => {
             this.signupUser()
           })
         } else if (this.state.pronouns === 'she/her') {
-          this.setState({gender_preference: 'wmw'}, () => {
+          this.setState({gender_preference: 'wall'}, () => {
             this.signupUser()
           })
         } else {
-          this.setState({gender_preference: 'nmw'}, () => {
+          this.setState({gender_preference: 'nall'}, () => {
             this.signupUser()
           })
         }
-
       } else if (this.state.gender_preference_men && this.state.gender_preference_nonbinary) {
         if (this.state.pronouns === 'he/him') {
           this.setState({gender_preference: 'mmn'}, () => {
@@ -204,13 +199,38 @@ const styles = theme => ({
           })
           //nonbinary
         }
+      } else if (this.state.gender_preference_women) {
+        if (this.state.pronouns === 'he/him') {
+          this.setState({gender_preference: 'mn'}, () => {
+            this.signupUser()
+          })
+        } else if (this.state.pronouns === 'she/her') {
+          this.setState({gender_preference: 'wn'}, () => {
+            this.signupUser()
+          })
+        } else {
+          this.setState({gender_preference: 'nn'}, () => {
+            this.signupUser()
+          })
+          //nonbinary
+        }
       } else {
-        this.setState({gender_preference: 'all'}, () => {
-          this.signupUser()
-        })
-        //this.state.gender_preference_nonbinary
+        if (this.state.pronouns === 'he/him') {
+          this.setState({gender_preference: 'mall'}, () => {
+            this.signupUser()
+          })
+        } else if (this.state.pronouns === 'she/her') {
+          this.setState({gender_preference: 'wall'}, () => {
+            this.signupUser()
+          })
+        } else {
+          this.setState({gender_preference: 'nall'}, () => {
+            this.signupUser()
+          })
+          //nonbinary
+        }
       }
-  }
+    }
 
     signupUser() {
       fetch('http://localhost:3000/users', {
@@ -230,7 +250,7 @@ const styles = theme => ({
       .then(json => {
         console.log('hi', json)
         localStorage.setItem('UserID', json.user.id);
-        localStorage.setItem('Token', json.token);
+        localStorage.setItem('Token', json.jwt);
         localStorage.setItem('Email', json.user.email);
         this.createProfile()
       })
@@ -263,6 +283,8 @@ const styles = theme => ({
     .then(r => r.json())
     .then(json => {
       console.log('hi', json)
+      let pref = json.gender_preference.substr(1)
+      console.log(pref)
       localStorage.setItem('UserLocation', json.location);
       localStorage.setItem('UserImage', json.image);
       localStorage.setItem('UserPronouns', json.pronouns);
@@ -270,7 +292,7 @@ const styles = theme => ({
       localStorage.setItem('UserMax', json.max_age_preference);
       localStorage.setItem('UserMin', json.min_age_preference);
       localStorage.setItem('UserBio', json.biography);
-      localStorage.setItem('UserGenderPref', json.gender_preference);
+      localStorage.setItem('UserGenderPref', pref);
 
     })
   }

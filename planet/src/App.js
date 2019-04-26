@@ -6,6 +6,8 @@ import Home from './Containers/Home'
 import DatePost from './Containers/DatePost'
 import Example from './Containers/Example'
 import Suggestions from './Containers/Suggestions'
+import DatePosts from './Containers/DatePosts'
+import YourDates from './Containers/YourDates'
 
 
 import './App.css';
@@ -15,7 +17,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 
 class App extends Component {
-  
+
 
 
 
@@ -31,6 +33,8 @@ class App extends Component {
         <Route exact path='/datepost' component={DatePost} />
         <Route exact path='/example' component={Example} />
         <Route exact path='/suggestions' component={Suggestions} />
+        <Route exact path='/dateposts' component={DatePosts} />
+        <Route exact path='/yourdates' component={YourDates} />
 
       </Router>
 

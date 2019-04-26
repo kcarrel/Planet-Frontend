@@ -159,7 +159,7 @@ const styles = theme => ({
             <Input onChange={this.handleChange} name="title" type="text" id="title" autoComplete="title" className={classes.textField} margin="normal"
               />
           </FormControl>
-          
+
           <FormControl  margin="normal" >
 
           <TextField
@@ -176,34 +176,41 @@ const styles = theme => ({
           />
           </FormControl>
 
-
-          <FormControl>
-              <TextField
-              id="category"
-              select
-              label="Select"
-              className={classes.textField}
-              value={this.state.pronouns}
-              name="category"
-              onChange={this.handleChange}
-              SelectProps={{
-                MenuProps: {
-                  className: classes.menu,
-                },
-              }}
-              helperText="Descriptive Category"
-              margin="normal"
+        <FormControl  margin="normal" >
+          <TextField
+          id="category"
+          select
+          label="Select"
+          className={classes.textField}
+          value={this.state.category}
+          name="category"
+          onChange={this.handleChange}
+          SelectProps={{
+            MenuProps: {
+              className: classes.menu,
+            },
+          }}
+          helperText="Type of date"
+          margin="normal"
             >
-            <MenuItem key='she/her' value='she/her'>
-              She/Her
+            <MenuItem key='event' value='event'>
+              Event(concert, show, etc...)
             </MenuItem>
 
-            <MenuItem key='he/him' value='he/him'>
-              He/Him
+            <MenuItem key='restaurant' value='restaurant'>
+              Restaurant
             </MenuItem>
 
-            <MenuItem key='they/them' value='they/them'>
-              They/Them
+            <MenuItem key='bar' value='bar'>
+              Bar
+            </MenuItem>
+
+            <MenuItem key='fitness' value='fitness'>
+              Fitness
+            </MenuItem>
+
+            <MenuItem key='arts' value='arts'>
+              Art/Culture
             </MenuItem>
 
             </TextField>

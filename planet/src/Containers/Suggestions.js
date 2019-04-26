@@ -87,7 +87,9 @@ class Suggestions extends Component {
 
   //fetch down Yelp suggestions(20 at a time)
   fetchYelp() {
-    let url = "https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=bar&location=Queen_Anne_Seattle"
+    let location = localStorage.getItem("UserLocation")
+
+    let url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${this.state.category}&location=${location}`
     fetch(url, {
       'headers': {
         'Authorization': "Bearer YAcnqZXeGC2n8VCiRTTDaR7Cm5PSV1ZPt9fakWKzAttuZps7bi_AasVaM0Hs0J7PF7OSJstG3fv6kQC_k5cC6W0W3LljzjlU65wNL2jK2Hlu1PcZ7s9G4xiFPjm_XHYx"
