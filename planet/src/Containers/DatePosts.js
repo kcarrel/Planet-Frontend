@@ -76,9 +76,11 @@ class DatePosts extends Component {
     this.state = {
       matches: [],
       dates: [],
-      haveDates: null
+      haveDates: null,
+      message:''
     }
     this.fetchProfiles()
+    this.handleInterest = this.handleInterest.bind(this)
   }
 
 
@@ -168,6 +170,26 @@ class DatePosts extends Component {
     this.setState({[ev.target.name]: ev.target.value})
   }
 
+  handleInterest(data) {
+
+    fetch('http://localhost:3000/date_interests', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('Token')}`
+      },
+      body: JSON.stringify({
+        date_interest: {
+          date_post_id: data.id,
+          message: this.state.message
+          }
+      })
+    })
+    .then(response => response.json())
+    .then(json => console.log(json))
+  }
+
 
 
   render() {
@@ -198,6 +220,26 @@ class DatePosts extends Component {
                 </Typography>
               </CardContent>
             </CardActionArea>
+            <TextField
+              name='message'
+              placeholder="Send the poster a message!"
+              multiline={true}
+              rows={8}
+              rowsMax={8}
+              className={classes.textArea}
+              onChange={this.handleChange}
+            />
+            <Button
+              margin="normal"
+              onClick={(data) => this.handleInterest(data)}
+              type="submit"
+              sizeLarge
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              >
+              I'm interested!
+            </Button>
 
           </Card>
         })

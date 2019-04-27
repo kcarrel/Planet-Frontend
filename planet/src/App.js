@@ -8,6 +8,7 @@ import Example from './Containers/Example'
 import Suggestions from './Containers/Suggestions'
 import DatePosts from './Containers/DatePosts'
 import YourDates from './Containers/YourDates'
+import EditDate from './Containers/EditDate'
 
 
 import './App.css';
@@ -35,6 +36,7 @@ class App extends Component {
         <Route exact path='/suggestions' component={Suggestions} />
         <Route exact path='/dateposts' component={DatePosts} />
         <Route exact path='/yourdates' component={YourDates} />
+        <Route exact path='/editdate' component={EditDate} />
 
       </Router>
 

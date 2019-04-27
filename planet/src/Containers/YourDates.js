@@ -74,100 +74,36 @@ class YourDates extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      matches: [],
       dates: [],
-      haveDates: null
     }
-    this.fetchProfiles()
+    this.fetchDates()
+    this.deleteEvent = this.deleteEvent.bind(this)
   }
 
 
 
-  //fetch down all profiles that are not the current users
-  fetchProfiles() {
-    //gotta send the token over
-    fetch('http://localhost:3000/all', {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('Token')}`
-      }
-    })
-    .then(response => response.json())
-    .then(profiles => {
-      this.findMatches(profiles)
-    })
-  }
-
-  //find user_ids for profiles with pronoun+ gender pref matches with current_user
-  findMatches(profiles) {
-    let newMatches = []
-    let userPref = localStorage.getItem("UserGenderPref")
-    let userPronoun = ''
-    if (localStorage.getItem("UserPronouns") === 'she/her') {
-      userPronoun = 'w'
-    } else if (localStorage.getItem("UserPronouns") === 'he/him') {
-      userPronoun = 'm'
-    } else {
-      userPronoun = 'n'
-    }
-    profiles.map(profile => {
-      let pronoun = ''
-      if (profile.pronouns === 'she/her') {
-        pronoun = 'w'
-        if (userPref === 'all' && (profile.gender_preference.includes(userPronoun) || profile.gender_preference === 'all')) {
-          newMatches.push(profile)
-        } else if (userPref.includes(pronoun) && (profile.gender_preference.includes(userPronoun) || profile.gender_preference === 'all')) {
-          newMatches.push(profile)
-        }
-      } else if (profile.pronouns === 'he/him') {
-        pronoun = 'm'
-        if (userPref === 'all' && (profile.gender_preference.includes(userPronoun) || profile.gender_preference === 'all')) {
-          newMatches.push(profile)
-        } else if (userPref.includes(pronoun) && (profile.gender_preference.includes(userPronoun) || profile.gender_preference === 'all')) {
-          newMatches.push(profile)
-        }
-      } else {
-        pronoun = 'n'
-        if (userPref === 'all' && (profile.gender_preference.includes(userPronoun) || profile.gender_preference === 'all')) {
-          newMatches.push(profile)
-        } else if (userPref.includes(pronoun) && (profile.gender_preference.includes(userPronoun) || profile.gender_preference === 'all')) {
-          newMatches.push(profile)
-        }
-      }
-
-    })
-    this.setState({
-      matches: newMatches
-    }, () => {
-      this.fetchDates()
-    })
-  }
-  //
+  //fetch down all Dates for a user
   fetchDates() {
-    let newDates = []
-    this.state.matches.map(match => {
-    fetch((`http://localhost:3000/date_posts/${match.user_id}`), {
+    fetch('http://localhost:3000/seeDates', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
       }
     })
     .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      this.state.dates.push(json)
-      this.setState({
-        dates: this.state.dates
-        })
-      })
-      this.setState({haveDates: true})
+    .then(dates => {
+      this.setState({dates})
     })
   }
 
-  handleChange = (ev) => {
-    this.setState({[ev.target.name]: ev.target.value})
+  deleteEvent(data) {
+    fetch(`http://localhost:3000/date_posts/${data.id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('Token')}`
+      }
+    })
   }
-
 
 
   render() {
@@ -177,10 +113,8 @@ class YourDates extends Component {
       <main className={classes.main}>
 
 
-        { this.state.haveDates ? (
-          this.state.dates.map(data => {
+        {this.state.dates.map(data => {
           return <Card className={classes.card}>
-            <CardActionArea>
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
@@ -197,13 +131,28 @@ class YourDates extends Component {
                   {data.description}
                 </Typography>
               </CardContent>
-            </CardActionArea>
 
+            <Button
+              onClick={localStorage.setItem("hi", data.id)}
+              component={Link} to="/editDate"
+              type="submit"
+              sizeLarge
+              variant="contained"
+              color="primary"
+              className={classes.submit}>
+              Edit
+            </Button>
+            <Button
+              onClick={() => this.deleteEvent(data)}
+              type="submit"
+              sizeLarge
+              variant="contained"
+              color="primary"
+              className={classes.submit}>
+              Delete
+            </Button>
           </Card>
         })
-      ) : (
-        null
-      )
       }
     </main>
     );
