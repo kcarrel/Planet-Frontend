@@ -170,8 +170,7 @@ class DatePosts extends Component {
     this.setState({[ev.target.name]: ev.target.value})
   }
 
-  handleInterest(data) {
-
+  handleInterest(ev, data) {
     fetch('http://localhost:3000/date_interests', {
       method: 'POST',
       headers: {
@@ -186,8 +185,6 @@ class DatePosts extends Component {
           }
       })
     })
-    .then(response => response.json())
-    .then(json => console.log(json))
   }
 
 
@@ -231,7 +228,7 @@ class DatePosts extends Component {
             />
             <Button
               margin="normal"
-              onClick={(data) => this.handleInterest(data)}
+              onClick={(ev) => this.handleInterest(ev, data)}
               type="submit"
               sizeLarge
               variant="contained"
