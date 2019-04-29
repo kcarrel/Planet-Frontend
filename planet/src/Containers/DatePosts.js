@@ -156,8 +156,10 @@ class DatePosts extends Component {
     })
     .then(response => response.json())
     .then(json => {
-      console.log(json)
-      this.state.dates.push(json)
+      let jsonlength = json.length
+      for (let i = 0; i < jsonlength; i ++) {
+        this.state.dates.push(json[i])
+      }
       this.setState({
         dates: this.state.dates
         })

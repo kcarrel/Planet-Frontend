@@ -257,7 +257,6 @@ const styles = theme => ({
     }
 
   createProfile() {
-    console.log('make a damn profile')
     fetch('http://localhost:3000/profiles', {
     method: 'POST',
     headers: {

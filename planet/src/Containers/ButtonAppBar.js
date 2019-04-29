@@ -49,7 +49,9 @@ function ButtonAppBar(props) {
           <Button component={Link} to="/example" color="inherit">See date example</Button>
           <Button component={Link} to="/suggestions" color="inherit">Date Suggestions</Button>
           <Button component={Link} to="/dateposts" color="inherit">Date Posts</Button>
-          <Button component={Link} to="/yourdates" color="inherit">See Your Dates</Button>
+          <Button component={Link} to="/yourdates" color="inherit">Your Dates</Button>
+          <Button component={Link} to="/messages" color="inherit">Messages</Button>
+          <Button component={Link} to="/confirmed" color="inherit">Confirmed Dates</Button>
 
         </Toolbar>
       </AppBar>
