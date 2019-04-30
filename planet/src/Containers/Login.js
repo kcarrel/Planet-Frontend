@@ -1,11 +1,9 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component  } from 'react'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -78,6 +76,7 @@ class Login extends Component {
       .then(r => r.json())
       .then(json => {
         localStorage.setItem('UserID', json.user.id);
+        localStorage.setItem('UserEmail', json.user.email);
         localStorage.setItem('Token', json.token);
         this.getProfile()
     })
@@ -94,6 +93,7 @@ class Login extends Component {
     })
     .then(r => r.json())
     .then(json => {
+      localStorage.setItem('UserName', json.name);
       localStorage.setItem('UserLocation', json.location);
       localStorage.setItem('UserImage', json.image);
       localStorage.setItem('UserPronouns', json.pronouns);

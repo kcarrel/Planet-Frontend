@@ -2,23 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 
 
@@ -82,6 +69,7 @@ class Messages extends Component {
     this.deleteEvent = this.deleteEvent.bind(this)
   }
 
+  //delete a
   deleteEvent(data) {
     fetch(`http://localhost:3000/date_interests/${data.id}`, {
       method: 'DELETE',
@@ -89,8 +77,10 @@ class Messages extends Component {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
       }
     })
+    this.fetchDates()
   }
 
+  //confirm a date interest and create a date decision
   createResponse(data) {
     fetch('http://localhost:3000/date_decisions', {
     method: 'POST',
@@ -106,10 +96,6 @@ class Messages extends Component {
         decision: true
         }
       })
-    })
-    .then(r => r.json())
-    .then(json => {
-      console.log(json)
     })
   }
 
@@ -144,7 +130,6 @@ class Messages extends Component {
 
   //fetch down all date interests for a date that the current user has posted
   fetchInterest(date) {
-    console.log('hi')
     fetch(`http://localhost:3000/fetch/${date.id}`, {
       method: 'GET',
       headers: {
@@ -197,6 +182,7 @@ class Messages extends Component {
               className={classes.submit}>
               Confirm
             </Button>
+
             <Button
               onClick={() => this.deleteEvent(data)}
               type="submit"
@@ -209,7 +195,7 @@ class Messages extends Component {
           </Card>
         })
       }
-    // </main>
+    </main>
    );
   }
 }

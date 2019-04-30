@@ -1,5 +1,4 @@
 import React from 'react';
-import purple from '@material-ui/core/colors/purple';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -10,6 +9,15 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconPlanet from '../images/iconplanet.png'
 import { Link } from 'react-router-dom'
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import Badge from '@material-ui/core/Badge';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
+import InputBase from '@material-ui/core/InputBase';
+import SearchIcon from '@material-ui/icons/Search';
 
 const styles = {
   root: {
@@ -28,35 +36,122 @@ const styles = {
 };
 
 
-function ButtonAppBar(props) {
-  const { classes } = props;
+class ButtonAppBar extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+    anchorEl: null,
+    mobileMoreAnchorEl: null,
+    }
+  };
+
+  handleProfileMenuOpen = event => {
+    this.setState({ anchorEl: event.currentTarget });
+  };
+
+  handleMenuClose = () => {
+    this.setState({ anchorEl: null });
+    this.handleMobileMenuClose();
+  }
+
+  handleMobileMenuOpen = event => {
+    this.setState({ mobileMoreAnchorEl: event.currentTarget });
+  };
+
+  handleMobileMenuClose = () => {
+    this.setState({ mobileMoreAnchorEl: null });
+  };
 
 
+  render () {
+  const { anchorEl, mobileMoreAnchorEl } = this.state;
+   const { classes } = this.props;
+   const isMenuOpen = Boolean(anchorEl);
+   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+   const renderMenu = (
+     <Menu
+       anchorEl={anchorEl}
+       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+       open={isMenuOpen}
+       onClose={this.handleMenuClose}
+     >
+       <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+       <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+     </Menu>
+   );
+
+   const renderMobileMenu = (
+     <Menu
+       anchorEl={mobileMoreAnchorEl}
+       anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+       transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+       open={isMobileMenuOpen}
+       onClose={this.handleMenuClose}
+     >
+       <MenuItem onClick={this.handleMobileMenuClose}>
+         <IconButton color="inherit">
+           <Badge badgeContent={4} color="secondary">
+             <MailIcon />
+           </Badge>
+         </IconButton>
+         <p>Messages</p>
+       </MenuItem>
+       <MenuItem onClick={this.handleMobileMenuClose}>
+         <IconButton color="inherit">
+           <Badge badgeContent={11} color="secondary">
+             <NotificationsIcon />
+           </Badge>
+         </IconButton>
+         <p>Notifications</p>
+       </MenuItem>
+       <MenuItem onClick={this.handleProfileMenuOpen}>
+         <IconButton color="inherit">
+           <AccountCircle />
+         </IconButton>
+         <p>Profile</p>
+       </MenuItem>
+     </Menu>
+   );
   return (
     <div className={classes.root}>
-      <AppBar position="static">
-        <Toolbar style={{ backgroundColor: '#04151F' }}>
-          <IconButton component={Link} to="/" className={classes.button} aria-label="Home">
-            <img src={IconPlanet} alt="" width="46" height="42" />
-          </IconButton>
-          <IconButton color="inherit" aria-label="Menu">
-            <MenuIcon />
-          </IconButton>
+        <AppBar position="static">
+          <Toolbar style={{ backgroundColor: '#04151F' }}>
+            <IconButton component={Link} to="/" className={classes.button} aria-label="Home">
+              <img src={IconPlanet} alt="" width="46" height="42" />
+            </IconButton>
+            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
+              <MenuIcon />
+            </IconButton>
 
-          <Button component={Link} to="/signup" color="inherit">Signup</Button>
-          <Button component={Link} to="/login" color="inherit">Login</Button>
-          <Button component={Link} to="/datepost" color="inherit">Create a Date</Button>
-          <Button component={Link} to="/example" color="inherit">See date example</Button>
-          <Button component={Link} to="/suggestions" color="inherit">Date Suggestions</Button>
-          <Button component={Link} to="/dateposts" color="inherit">Date Posts</Button>
-          <Button component={Link} to="/yourdates" color="inherit">Your Dates</Button>
-          <Button component={Link} to="/messages" color="inherit">Messages</Button>
-          <Button component={Link} to="/confirmed" color="inherit">Confirmed Dates</Button>
+            <div className={classes.grow} />
+            <div className={classes.sectionDesktop}>
+              <IconButton component={Link} to="/messages" color="inherit">
+                <MailIcon/>
+              </IconButton>
 
-        </Toolbar>
-      </AppBar>
-    </div>
-  );
+              <IconButton
+                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                aria-haspopup="true"
+                onClick={this.handleProfileMenuOpen}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+            </div>
+            <div className={classes.sectionMobile}>
+              <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                <MoreIcon />
+              </IconButton>
+            </div>
+          </Toolbar>
+        </AppBar>
+        {renderMenu}
+        {renderMobileMenu}
+      </div>
+    );
+  }
 }
 
 ButtonAppBar.propTypes = {

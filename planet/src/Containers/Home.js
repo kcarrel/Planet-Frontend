@@ -6,6 +6,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+import planet from '../images/iconplanet.png'
 
 const styles = {
   main: {
@@ -29,11 +30,12 @@ const styles = {
   media: {
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
+    padding: 50
   },
 };
 
 class Home extends Component {
-  
+
 
 
   render() {
@@ -41,16 +43,12 @@ class Home extends Component {
     return (
     <main className={classes.main}>
 
+
+      <img className="App-logo" src={planet} alt="Planet"/>\
+
+
       <Card className={classes.card}>
         <CardActionArea>
-          <CardMedia
-            component="img"
-            alt="Contemplative Reptile"
-            className={classes.media}
-            height="600"
-            image={require("../images/home.png")}
-            title="Date Planet"
-          />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">
               DatePlanet

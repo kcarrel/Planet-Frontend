@@ -53,7 +53,7 @@ class Example extends Component {
             alt="Contemplative Reptile"
             className={classes.media}
             height="300"
-            image={require("../images/example.png")}
+            image={require("../images/example.jpg")}
             title="Date Planet"
           />
           <CardContent>
@@ -61,7 +61,7 @@ class Example extends Component {
               Greenlake, Dog and Drinks?
             </Typography>
             <Typography gutterBottom variant="h5" component="h2">
-              04/29/2019 at 6:30 PM
+              05/10/2019 at 6:30 PM
             </Typography>
             <Typography component="p">
               My dog, Smokey, and I would love to meet you at Greenlake on Monday for a walk around the lake then dinner and drinks at Shelter.

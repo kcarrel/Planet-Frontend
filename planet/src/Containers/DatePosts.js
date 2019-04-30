@@ -228,6 +228,20 @@ class DatePosts extends Component {
               className={classes.textArea}
               onChange={this.handleChange}
             />
+
+            <Button
+              margin="normal"
+              onClick={localStorage.setItem("profile", data.id)}
+              component={Link} to="/seeprofile"
+              type="submit"
+              sizeLarge
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+              >
+              See Profile
+            </Button>
+
             <Button
               margin="normal"
               onClick={(ev) => this.handleInterest(ev, data)}

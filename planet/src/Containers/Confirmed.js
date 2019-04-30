@@ -2,23 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import { Link } from 'react-router-dom';
 
 
@@ -74,17 +61,21 @@ class Confirmed extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      confirmedDates: [],
-      haveConfirmed: null
+      userDates: [],
+      responsedDates: [],
+      haveUserDates: null,
+      haveResDates: null,
+      interests: []
     }
     this.fetchConfirmedByUser()
+    this.fetchConfirmedByPoster()
   }
 
 
 
-  //fetch down all confirmed Dates that were posted by current user
+  //fetch down all confirmed DateDecisions that were posted by current user
   fetchConfirmedByUser() {
-    fetch(`http://localhost:3000/date_decisions/${localStorage.getItem("UserID")}`, {
+    fetch(`http://localhost:3000/fetch_by_user/${localStorage.getItem("UserID")}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -92,9 +83,44 @@ class Confirmed extends Component {
     })
     .then(response => response.json())
     .then(dates => {
-      console.log(dates)
+      this.setState({
+        userDates: dates
+      })
     })
   }
+  //fetch down all the DateResponses that current user has created to compare
+  // against DateDecisions
+  fetchConfirmedByPoster() {
+    fetch(`http://localhost:3000/find/${localStorage.getItem("UserID")}`, {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('Token')}`
+      }
+    })
+    .then(response => response.json())
+    .then(dates => {
+      this.setState({interests: dates})
+      this.fetchDecisions()
+      })
+    }
+
+
+    //takes in an array of interest ids to find confirmed dates by
+    // a date decision will not exist unless it is a confirmation
+    fetchDecisions() {
+      this.state.interests.forEach(interest => {
+        fetch(`http://localhost:3000/fetch_by_id/${interest.id}`, {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem('Token')}`
+            }
+          })
+          .then(response => response.json())
+          .then(dates => {
+            console.log(dates)
+          })
+        })
+    }
 
   //fetch all date_interests that the current user has created(eg responded to a posted date)
   // then loop through date_interests to pull down date_decisions that match that interest_id

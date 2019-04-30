@@ -1,4 +1,4 @@
-import React, { Component, PureComponent } from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -7,9 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormGroup from '@material-ui/core/FormGroup';
-import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
-import FormHelperText from '@material-ui/core/FormHelperText';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -281,9 +279,8 @@ const styles = theme => ({
     })
     .then(r => r.json())
     .then(json => {
-      console.log('hi', json)
       let pref = json.gender_preference.substr(1)
-      console.log(pref)
+      localStorage.setItem('UserName', json.name);
       localStorage.setItem('UserLocation', json.location);
       localStorage.setItem('UserImage', json.image);
       localStorage.setItem('UserPronouns', json.pronouns);
