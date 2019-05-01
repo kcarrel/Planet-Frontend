@@ -172,13 +172,19 @@ class Messages extends Component {
               />
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h2">
+                  {data.date_post.title}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
+                  {data.date_post.date}
+                </Typography>
+                <Typography gutterBottom variant="h5" component="h2">
                   {data.message}
                 </Typography>
               </CardContent>
 
             <Button
               onClick={() => this.createResponse(data)}
-              component={Link} to="/editDate"
+              component={Link} to="/dateposts"
               type="submit"
               sizeLarge
               variant="contained"

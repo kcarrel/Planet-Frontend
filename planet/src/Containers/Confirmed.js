@@ -7,6 +7,9 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link, Redirect } from 'react-router-dom';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 
 const styles = theme => ({
@@ -62,7 +65,7 @@ class Confirmed extends Component {
     super(props)
     this.state = {
       userDates: [],
-      responsedDates: [],
+      respondedDates: [],
       haveUserDates: null,
       haveResDates: null,
       interests: []
@@ -83,9 +86,12 @@ class Confirmed extends Component {
     })
     .then(response => response.json())
     .then(dates => {
-      this.setState({
-        userDates: dates
-      })
+      if (dates.length > 0) {
+        this.setState({
+        userDates: dates,
+        haveUserDates: true
+        })
+      }
     })
   }
   //fetch down all the DateResponses that current user has created to compare
@@ -108,6 +114,7 @@ class Confirmed extends Component {
     //takes in an array of interest ids to find confirmed dates by
     // a date decision will not exist unless it is a confirmation
     fetchDecisions() {
+      let confirmed = []
       this.state.interests.forEach(interest => {
         fetch(`http://localhost:3000/fetch_by_id/${interest.id}`, {
             method: 'GET',
@@ -117,7 +124,13 @@ class Confirmed extends Component {
           })
           .then(response => response.json())
           .then(dates => {
-            console.log(dates)
+            if (dates.length > 0 ) {
+              confirmed.push(dates[0])
+              this.setState({
+                respondedDates: confirmed,
+                haveResDates: true
+              })
+            }
           })
         })
     }
@@ -129,51 +142,12 @@ class Confirmed extends Component {
 
 
   render() {
-    if (!this.props.loggedIn) {
-      return <Redirect to='/'/>
-    }
+
     //from material ui
     const { classes } = this.props;
     return (
       <main className={classes.main}>
-
-
-
-          return <Card className={classes.card}>
-              <CardMedia
-                component="img"
-                alt="Contemplative Reptile"
-                className={classes.media}
-                height="10%"
-                image={require("../images/duck.png")}
-                title="Date Planet"
-              />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  HI
-                </Typography>
-              </CardContent>
-
-            <Button
-
-              component={Link} to="/editDate"
-              type="submit"
-              sizeLarge
-              variant="contained"
-              color="primary"
-              className={classes.submit}>
-              Confirm
-            </Button>
-            <Button
-              type="submit"
-              sizeLarge
-              variant="contained"
-              color="primary"
-              className={classes.submit}>
-              Deny
-            </Button>
-          </Card>
-
+        HI
      </main>
    );
   }

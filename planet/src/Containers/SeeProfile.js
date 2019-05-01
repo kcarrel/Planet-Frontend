@@ -9,7 +9,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Redirect } from 'react-router-dom';
-
+import Avatar from '@material-ui/core/Avatar';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
   main: {
@@ -33,6 +34,14 @@ const styles = {
   media: {
     // ⚠️ object-fit is not supported by IE 11.
     objectFit: 'cover',
+  },
+  avatar: {
+   margin: 10,
+  },
+  bigAvatar: {
+   margin: 10,
+   width: 90,
+   height: 90,
   },
 };
 
@@ -83,6 +92,10 @@ class SeeProfile extends Component {
       <Card className={classes.card}>
         <CardActionArea>
           <CardContent>
+            <Grid container justify="center" alignItems="center">
+            <Avatar alt="profile icon" src={this.state.image} className={classes.bigAvatar} />
+            </Grid>
+
             <Typography gutterBottom variant="h4" component="h2">
               {this.state.name} - {this.state.age}
             </Typography>

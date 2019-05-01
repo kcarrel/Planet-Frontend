@@ -8,7 +8,9 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
+import GridListTile from '@material-ui/core/GridListTile';
+import GridListTileBar from '@material-ui/core/GridListTileBar';
+import GridList from '@material-ui/core/GridList';
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -23,17 +25,22 @@ import { Link, Redirect } from 'react-router-dom';
 
 
 const styles = theme => ({
+
   main: {
     width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
     marginLeft: 50,
     marginRight: 50,
-      width: 700,
+      width: 1000,
       marginLeft: 'auto',
       marginRight: 'auto',
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
+    maxWidth: 400,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -66,8 +73,14 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 200,
+    width: 100 ,
   },
+  gridList: {
+   width: 900,
+   height: 900,
+   justify: 'center',
+
+ },
 });
 
 class DatePosts extends Component {
@@ -192,18 +205,20 @@ class DatePosts extends Component {
 
 
   render() {
-    if (!this.props.loggedIn) {
+    if (!localStorage.getItem("UserID")) {
       return <Redirect to='/'/>
     }
+    localStorage.removeItem("profile")
     //from material ui
     const { classes } = this.props;
     return (
       <main className={classes.main}>
 
-
+        <GridList id="list" cellHeight={700} cellPadding={50} className={classes.gridList}>
         { this.state.haveDates ? (
           this.state.dates.map(data => {
-          return <Card className={classes.card}>
+          return <GridListTile style={{width: 400}} key={data.id}>
+          <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -234,7 +249,7 @@ class DatePosts extends Component {
 
             <Button
               margin="normal"
-              onClick={localStorage.setItem("profile", data.id)}
+              onClick={() => localStorage.setItem("profile", data.id)}
               component={Link} to="/seeprofile"
               type="submit"
               sizeLarge
@@ -258,11 +273,14 @@ class DatePosts extends Component {
             </Button>
 
           </Card>
+        </GridListTile>
+
         })
       ) : (
         null
       )
       }
+  </GridList>
     </main>
     );
   }

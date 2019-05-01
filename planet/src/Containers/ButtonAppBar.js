@@ -99,14 +99,17 @@ class ButtonAppBar extends React.Component {
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
          <Button component={Link} to="/example" color="inherit">See date example</Button>
        </MenuItem>
-       <MenuItem onClick={(ev) => this.handleProfileMenuOpen(ev)}>
+       <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
          <Button component={Link} to="/dateposts" color="inherit">Date Posts</Button>
        </MenuItem>
-       <MenuItem onClick={(ev) => this.handleProfileMenuOpen(ev)}>
+       <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
          <Button component={Link} to="/suggestions" color="inherit">Date Suggestions</Button>
        </MenuItem>
-       <MenuItem onClick={(ev) => this.handleProfileMenuOpen(ev)}>
+       <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
         <Button component={Link} to="/yourdates" color="inherit">Your Dates</Button>
+       </MenuItem>
+       <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
+        <Button component={Link} to="/confirmed" color="inherit">Confirmed Dates</Button>
        </MenuItem>
      </Menu>
    );

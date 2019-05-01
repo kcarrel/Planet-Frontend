@@ -38,6 +38,11 @@ body {
   justify-content: flex-end;
 }
 
+#list {
+  display: flex;
+  justify-content: center;
+}
+
 
 @keyframes App-logo-spin {
   from {

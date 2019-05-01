@@ -81,8 +81,8 @@ class Login extends Component {
         localStorage.setItem('UserEmail', json.user.email);
         localStorage.setItem('Token', json.token);
         this.getProfile()
-    })
-  }
+      })
+    }
 
   getProfile() {
     fetch((`http://localhost:3000/profiles/${localStorage.getItem('UserID')}`), {

@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
 
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -25,10 +27,13 @@ import { Link, Redirect } from 'react-router-dom';
 const styles = theme => ({
   main: {
     width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
     marginLeft: 50,
     marginRight: 50,
-      width: 700,
+      width: 1000,
       marginLeft: 'auto',
       marginRight: 'auto',
   },
@@ -68,6 +73,11 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
+  gridList: {
+   width: 900,
+   height: 900,
+   justify: 'center',
+ },
 });
 
 class Suggestions extends Component {
@@ -184,21 +194,6 @@ class Suggestions extends Component {
                 </TextField>
             </FormControl>
 
-            <FormControl  margin="normal" >
-            <TextField
-              id="datetime-local"
-              type="date"
-              name='date'
-              defaultValue="2017-05-24T10:30"
-              className={classes.textField}
-              onChange={this.handleChange}
-              InputLabelProps={{
-                shrink: true,
-              }}
-            />
-            </FormControl>
-
-
             <Button
               onClick={this.handleSubmit}
               type="submit"
@@ -211,9 +206,12 @@ class Suggestions extends Component {
           </form>
         </Paper>
 
+        <GridList id="list" cellWidth={900} cellHeight={400} cellPadding={20} className={classes.gridList}>
+
         { this.state.yelpActive ? (
           this.state.yelp.map(data => {
-          return <a target="_blank" href={data.url}>
+          return <GridListTile style={{width: 400}} key={data.id}>
+          <a target="_blank" href={data.url}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
@@ -236,11 +234,14 @@ class Suggestions extends Component {
 
           </Card>
           </a>
+        </GridListTile>
+
         })
         ) : (
           this.state.ticketmaster.map(data => {
             let url = data.url
-          return <a target="_blank" href={url}>
+          return <GridListTile style={{width: 400}} key={data.id}>
+          <a target="_blank" href={url}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
@@ -265,8 +266,11 @@ class Suggestions extends Component {
 
           </Card>
           </a>
+        </GridListTile>
+
         })
       )}
+    </GridList>
 
     </main>
     );

@@ -30,6 +30,7 @@ class App extends Component {
     }
   }
 
+
   toggleLogin = () => {
     if (localStorage.getItem("UserID")) {
       this.setState({
