@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import planet from '../images/iconplanet.png'
+import { Redirect } from 'react-router-dom';
 
 const styles = {
   main: {
@@ -35,10 +36,13 @@ const styles = {
 };
 
 class Home extends Component {
-
+  constructor() {
+    super()
+  }
 
 
   render() {
+  
     const { classes } = this.props;
     return (
     <main className={classes.main}>

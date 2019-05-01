@@ -19,7 +19,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -130,6 +130,9 @@ class Suggestions extends Component {
   }
 
   render() {
+    if (!this.props.loggedIn) {
+      return <Redirect to='/'/>
+    }
     //from material ui
     const { classes } = this.props;
     return (

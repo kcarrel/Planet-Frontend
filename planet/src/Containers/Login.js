@@ -11,6 +11,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
+import { Redirect } from 'react-router-dom';
+
 const styles = theme => ({
   main: {
     width: 'auto',
@@ -102,10 +104,14 @@ class Login extends Component {
       localStorage.setItem('UserMin', json.min_age_preference);
       localStorage.setItem('UserBio', json.biography);
       localStorage.setItem('UserGenderPref', json.gender_preference);
+      this.props.toggleLogin()
     })
   }
 
   render() {
+    if (this.props.loggedIn) {
+      return <Redirect to='/dateposts'/>
+    }
   const { classes } = this.props;
 
   return (

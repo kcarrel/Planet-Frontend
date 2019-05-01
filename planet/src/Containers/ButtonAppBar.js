@@ -18,6 +18,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import { Redirect } from 'react-router-dom';
 
 const styles = {
   root: {
@@ -46,6 +47,7 @@ class ButtonAppBar extends React.Component {
   };
 
   handleProfileMenuOpen = event => {
+    event.preventDefault()
     this.setState({ anchorEl: event.currentTarget });
   };
 
@@ -64,6 +66,7 @@ class ButtonAppBar extends React.Component {
 
 
   render () {
+
   const { anchorEl, mobileMoreAnchorEl } = this.state;
    const { classes } = this.props;
    const isMenuOpen = Boolean(anchorEl);
@@ -77,8 +80,8 @@ class ButtonAppBar extends React.Component {
        open={isMenuOpen}
        onClose={this.handleMenuClose}
      >
-       <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-       <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+       <MenuItem component={Link} to="/profile" onClick={this.handleMenuClose}> Edit Profile</MenuItem>
+       <MenuItem  component={Link} to="/" onClick={(ev) => this.props.clearApp(ev)}>Logout</MenuItem>
      </Menu>
    );
 
@@ -90,27 +93,20 @@ class ButtonAppBar extends React.Component {
        open={isMobileMenuOpen}
        onClose={this.handleMenuClose}
      >
-       <MenuItem onClick={this.handleMobileMenuClose}>
-         <IconButton color="inherit">
-           <Badge badgeContent={4} color="secondary">
-             <MailIcon />
-           </Badge>
-         </IconButton>
-         <p>Messages</p>
+       <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
+         <Button component={Link} to="/datepost" color="inherit">Create a Date</Button>
        </MenuItem>
-       <MenuItem onClick={this.handleMobileMenuClose}>
-         <IconButton color="inherit">
-           <Badge badgeContent={11} color="secondary">
-             <NotificationsIcon />
-           </Badge>
-         </IconButton>
-         <p>Notifications</p>
+       <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
+         <Button component={Link} to="/example" color="inherit">See date example</Button>
        </MenuItem>
-       <MenuItem onClick={this.handleProfileMenuOpen}>
-         <IconButton color="inherit">
-           <AccountCircle />
-         </IconButton>
-         <p>Profile</p>
+       <MenuItem onClick={(ev) => this.handleProfileMenuOpen(ev)}>
+         <Button component={Link} to="/dateposts" color="inherit">Date Posts</Button>
+       </MenuItem>
+       <MenuItem onClick={(ev) => this.handleProfileMenuOpen(ev)}>
+         <Button component={Link} to="/suggestions" color="inherit">Date Suggestions</Button>
+       </MenuItem>
+       <MenuItem onClick={(ev) => this.handleProfileMenuOpen(ev)}>
+        <Button component={Link} to="/yourdates" color="inherit">Your Dates</Button>
        </MenuItem>
      </Menu>
    );
@@ -118,12 +114,10 @@ class ButtonAppBar extends React.Component {
     <div className={classes.root}>
         <AppBar position="static">
           <Toolbar style={{ backgroundColor: '#04151F' }}>
-            <IconButton component={Link} to="/" className={classes.button} aria-label="Home">
+            <IconButton component={Link} to="/" onClick={(ev) => this.props.clearApp(ev)} className={classes.button} aria-label="Home">
               <img src={IconPlanet} alt="" width="46" height="42" />
             </IconButton>
-            <IconButton className={classes.menuButton} color="inherit" aria-label="Open drawer">
-              <MenuIcon />
-            </IconButton>
+
 
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>

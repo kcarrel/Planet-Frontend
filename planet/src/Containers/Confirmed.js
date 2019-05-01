@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -129,6 +129,9 @@ class Confirmed extends Component {
 
 
   render() {
+    if (!this.props.loggedIn) {
+      return <Redirect to='/'/>
+    }
     //from material ui
     const { classes } = this.props;
     return (

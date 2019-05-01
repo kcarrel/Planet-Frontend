@@ -15,6 +15,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -289,11 +290,14 @@ const styles = theme => ({
       localStorage.setItem('UserMin', json.min_age_preference);
       localStorage.setItem('UserBio', json.biography);
       localStorage.setItem('UserGenderPref', pref);
-
+      this.props.toggleLogin()
     })
   }
 
   render() {
+    if (this.props.loggedIn) {
+      return <Redirect to='/dateposts'/>
+    }
   const { classes } = this.props;
 
   return (

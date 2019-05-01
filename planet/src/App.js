@@ -19,36 +19,59 @@ import SeeProfile from './Containers/SeeProfile'
 import './App.css';
 
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      loggedIn: false
+    }
+  }
 
+  toggleLogin = () => {
+    if (localStorage.getItem("UserID")) {
+      this.setState({
+        loggedIn: true
+      })
+    } else {
+      this.setState({
+        loggedIn: false
+      })
+    }
+  }
 
+  clearApp = (ev) => {
+    ev.preventDefault()
+    localStorage.clear()
+    this.toggleLogin()
+  }
 
 
  render () {
+
   return (
     <div className="App">
       <Router>
-        {(localStorage.getItem("UserID")) ?
-          <ButtonAppBar/>
+        {(this.state.loggedIn) ?
+          <ButtonAppBar clearApp={this.clearApp} loggedIn={this.state.loggedIn}/>
           :
           <StartBar/>
         }
-        <Route exact path="/" component={Home} />
-        <Route exact path='/signup' component={Signup} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/datepost' component={DatePost} />
-        <Route exact path='/example' component={Example} />
-        <Route exact path='/suggestions' component={Suggestions} />
-        <Route exact path='/dateposts' component={DatePosts} />
-        <Route exact path='/yourdates' component={YourDates} />
-        <Route exact path='/editdate' component={EditDate} />
-        <Route exact path='/messages' component={Messages} />
-        <Route exact path='/confirmed' component={Confirmed} />
-        <Route exact path='/profile' component={Profile} />
-        <Route exact path='/seeprofile' component={SeeProfile} />
+        <Route exact path='/' render={(props) => <Home {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/signup' render={(props) => <Signup {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/login' render={(props) => <Login {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/datepost' render={(props) => <DatePost {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/example' render={(props) => <Example {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/suggestions' render={(props) => <Suggestions {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/dateposts' render={(props) => <DatePosts {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/yourdates' render={(props) => <YourDates {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/editdate' render={(props) => <EditDate {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/messages' render={(props) => <Messages {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/confirmed' render={(props) => <Confirmed {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/profile' render={(props) => <Profile {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/seeprofile' render={(props) => <SeeProfile {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
 
       </Router>
 

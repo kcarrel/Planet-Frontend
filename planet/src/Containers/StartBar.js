@@ -18,12 +18,11 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
+import { flexbox } from '@material-ui/system';
+import '../App.css';
 
 const styles = {
   root: {
-    flexGrow: 1,
-  },
-  grow: {
     flexGrow: 1,
   },
   menuButton: {
@@ -42,17 +41,18 @@ class StartBar extends React.Component {
   }
 
 
+
   render () {
     const { classes } = this.props;
 
   return (
     <div className={classes.root}>
       <AppBar position="static">
-        <Toolbar style={{ backgroundColor: '#04151F' }}>
+        <Toolbar id="toolbar" style={{ backgroundColor: '#04151F' }}>
 
-          <Button component={Link} to="/signup" color="inherit">Signup</Button>
-          <Button component={Link} to="/login" color="inherit">Login</Button>
-          
+          <Button className="startButton" component={Link} to="/signup" color="inherit">Signup</Button>
+          <Button className="startButton" component={Link} to="/login" color="inherit">Login</Button>
+
         </Toolbar>
       </AppBar>
     </div>
