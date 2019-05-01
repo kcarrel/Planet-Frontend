@@ -26,10 +26,17 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      loggedIn: false
+      loggedIn: this.check()
     }
   }
 
+  check() {
+    if (localStorage.getItem("UserID")) {
+      return true
+    } else {
+      return false
+    }
+  }
 
   toggleLogin = () => {
     if (localStorage.getItem("UserID")) {

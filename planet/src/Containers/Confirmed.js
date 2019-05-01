@@ -15,10 +15,13 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 const styles = theme => ({
   main: {
     width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
     marginLeft: 50,
     marginRight: 50,
-      width: 700,
+      width: 1000,
       marginLeft: 'auto',
       marginRight: 'auto',
   },
@@ -58,6 +61,11 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
+  gridList: {
+   width: 900,
+   height: 900,
+   justify: 'center',
+ },
 });
 
 class Confirmed extends Component {
@@ -147,7 +155,46 @@ class Confirmed extends Component {
     const { classes } = this.props;
     return (
       <main className={classes.main}>
-        HI
+        { this.state.haveResDates ? (
+          this.state.respondedDates.map(data => {
+          return <GridListTile style={{width: 400}} key={data.id}>
+          <Card className={classes.card}>
+            <CardActionArea>
+              <CardMedia
+                component="img"
+                alt="Contemplative Reptile"
+                className={classes.media}
+                height="10%"
+                image={require(`../images/${data.date_interest.date_post.category}.png`)}
+                title="Date Planet"
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h2">
+                  <b>{data.date_interest.date_post.title}</b> on {data.date_interest.date_post.date}
+                </Typography>
+                <Typography component="p">
+                  {data.date_interest.date_post.description}
+                </Typography>
+
+                <Button
+                  margin="normal"
+                  onClick={() => localStorage.setItem("profile", data.user_id)}
+                  component={Link} to="/seeprofile"
+                  type="submit"
+                  sizeLarge
+                  variant="contained"
+                  color="primary"
+                  className={classes.submit}
+                  >
+                  Date's Profile
+                </Button>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </GridListTile>
+
+        })
+      ) : null }
      </main>
    );
   }

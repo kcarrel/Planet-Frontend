@@ -96,14 +96,14 @@ class SeeProfile extends Component {
             <Avatar alt="profile icon" src={this.state.image} className={classes.bigAvatar} />
             </Grid>
 
-            <Typography gutterBottom variant="h4" component="h2">
-              {this.state.name} - {this.state.age}
-            </Typography>
             <Typography gutterBottom variant="h5" component="h2">
-              {this.state.location}
+              <b>{this.state.name}</b> - {this.state.location}
             </Typography>
             <Typography component="p">
-              {this.state.biography}
+              {this.state.age} years old
+            </Typography>
+            <Typography component="p">
+              <b>About {this.state.name}:</b> {this.state.biography}
             </Typography>
           </CardContent>
         </CardActionArea>

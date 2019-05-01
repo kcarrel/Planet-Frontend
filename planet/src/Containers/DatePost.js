@@ -129,10 +129,7 @@ const styles = theme => ({
         }
       })
     })
-      .then(r => r.json())
-      .then(json => {
-        console.log('hi', json)
-      })
+      .then(window.location.href='/yourdates')
     }
 
 
@@ -164,9 +161,9 @@ const styles = theme => ({
           <TextField
             id="datetime-local"
             label="Next appointment"
-            type="datetime-local"
+            type="date"
             name='date'
-            defaultValue="2017-05-24T10:30"
+            defaultValue="2019-05-01"
             className={classes.textField}
             onChange={this.handleChange}
             InputLabelProps={{

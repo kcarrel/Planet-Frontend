@@ -7,15 +7,21 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link, Redirect } from 'react-router-dom';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import CardActionArea from '@material-ui/core/CardActionArea';
 
 
 const styles = theme => ({
   main: {
     width: 'auto',
-    display: 'block', // Fix IE 11 issue.
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
     marginLeft: 50,
     marginRight: 50,
-      width: 700,
+      width: 1000,
       marginLeft: 'auto',
       marginRight: 'auto',
   },
@@ -55,6 +61,11 @@ const styles = theme => ({
     marginRight: theme.spacing.unit,
     width: 200,
   },
+  gridList: {
+   width: 900,
+   height: 900,
+   justify: 'center',
+ },
 });
 
 class YourDates extends Component {
@@ -89,7 +100,7 @@ class YourDates extends Component {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
       }
-    })
+    }).then(window.location.href='/yourdates')
   }
 
 
@@ -104,7 +115,8 @@ class YourDates extends Component {
 
 
         {this.state.dates.map(data => {
-          return <Card className={classes.card}>
+          return <GridListTile style={{width: 400}} key={data.id}>
+          <Card className={classes.card}>
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
@@ -114,8 +126,8 @@ class YourDates extends Component {
                 title="Date Planet"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {data.title} {data.date}
+                <Typography gutterBottom variant="h6" component="h2">
+                  <b>{data.title} </b> on {data.date}
                 </Typography>
                 <Typography component="p">
                   {data.description}
@@ -142,6 +154,8 @@ class YourDates extends Component {
               Delete
             </Button>
           </Card>
+        </GridListTile>
+
         })
       }
     </main>
