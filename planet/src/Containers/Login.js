@@ -77,10 +77,14 @@ class Login extends Component {
     })
       .then(r => r.json())
       .then(json => {
-        localStorage.setItem('UserID', json.user.id);
-        localStorage.setItem('UserEmail', json.user.email);
-        localStorage.setItem('Token', json.token);
-        this.getProfile()
+        if (json.user) {
+          localStorage.setItem('UserID', json.user.id);
+          localStorage.setItem('UserEmail', json.user.email);
+          localStorage.setItem('Token', json.token);
+          this.getProfile()
+        } else {
+          alert("You fucked up try again")
+        }
       })
     }
 

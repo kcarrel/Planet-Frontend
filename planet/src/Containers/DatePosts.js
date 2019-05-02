@@ -23,6 +23,11 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Link, Redirect } from 'react-router-dom';
 
+const eventImages = ['event', 'event1', 'event2']
+const barImages = ['bar', 'bar1', 'bar2', 'bar3', 'bar4', 'bar5']
+const restaurantImages = ['eat', 'eat1', 'eat2', 'eat3', 'eat4', 'eat5', 'eat6', 'eat7']
+const fitnessImages = ['fit', 'fit0', 'fit1', 'fit2', 'fit3', 'fit4', 'fit5']
+const artsImages = ['art0', 'art1', 'art2', 'art3', 'art4', 'art5']
 
 const styles = theme => ({
 
@@ -225,7 +230,7 @@ class DatePosts extends Component {
                 alt="Contemplative Reptile"
                 className={classes.media}
                 height="10%"
-                image={require("../images/duck.png")}
+                image={require('../images/duck.png')}
                 title="Date Planet"
               />
               <CardContent>

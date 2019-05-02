@@ -57,7 +57,7 @@ class Example extends Component {
             alt="Contemplative Reptile"
             className={classes.media}
             height="300"
-            image={require("../images/example.jpg")}
+            image={require("../images/bar5.png")}
             title="Date Planet"
           />
           <CardContent>
