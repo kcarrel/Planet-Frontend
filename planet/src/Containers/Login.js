@@ -83,7 +83,7 @@ class Login extends Component {
           localStorage.setItem('Token', json.token);
           this.getProfile()
         } else {
-          alert("You fucked up try again")
+          alert("User information not found. Please try again.")
         }
       })
     }

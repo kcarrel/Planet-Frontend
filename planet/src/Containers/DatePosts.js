@@ -2,27 +2,16 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import GridListTile from '@material-ui/core/GridListTile';
-import GridListTileBar from '@material-ui/core/GridListTileBar';
 import GridList from '@material-ui/core/GridList';
 import Grid from '@material-ui/core/Grid';
-
-import Avatar from '@material-ui/core/Avatar';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+
 import { Link, Redirect } from 'react-router-dom';
 
 const eventImages = ['event', 'event1', 'event2']
@@ -66,6 +55,7 @@ const styles = theme => ({
   },
   card: {
     maxWidth: 900,
+    minHeight: 500,
     alignContent: 'center',
     justify: 'center',
     marginTop: 50,
@@ -208,6 +198,8 @@ class DatePosts extends Component {
           }
       })
     })
+    .then(alert("Interest in date relayed!"))
+
   }
 
 
@@ -222,10 +214,13 @@ class DatePosts extends Component {
     return (
       <main className={classes.main}>
 
-        <GridList id="list" cellHeight={500} cellPadding={50} className={classes.gridList}>
+        <GridList id="list" cellHeight={500} cellPadding={20} className={classes.gridList}>
+          <GridListTile key="Subheader" cols={2} style={{ height: 100 }}>
+          <ListSubheader style={{backgroundColor: 'white', color: 'black'}} component="h1"><h2>Dates available in your area</h2></ListSubheader>
+        </GridListTile>
         { this.state.haveDates ? (
           this.state.dates.map(data => {
-          return <GridListTile style={{width: 600, height:500}} className="tile" key={data.id}>
+          return <GridListTile style={{width: 500, height:500}} className="tile" key={data.id}>
           <Card className={classes.card}>
               <CardMedia
                 component="img"
@@ -236,8 +231,8 @@ class DatePosts extends Component {
                 title="Date Planet"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {data.title} {data.date}
+                <Typography component="h2">
+                  <b>{data.title}</b> on {data.date}
                 </Typography>
                 <Typography component="p">
                   {data.description}
@@ -249,7 +244,7 @@ class DatePosts extends Component {
                     container
                     direction="row"
                     justify="center"
-                    alignItems="center"
+                    alignItems="flex-end"
                   >
             <TextField
               name='message'

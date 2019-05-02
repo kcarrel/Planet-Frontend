@@ -6,8 +6,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-import { Link, Redirect } from 'react-router-dom';
-import GridList from '@material-ui/core/GridList';
+import { Link } from 'react-router-dom';
 import GridListTile from '@material-ui/core/GridListTile';
 import CardActionArea from '@material-ui/core/CardActionArea';
 

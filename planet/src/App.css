@@ -11,9 +11,13 @@ body {
 
 }
 
+.media {
+  object-fit: 'cover'
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 50vmin;
+  height: 60vmin;
   pointer-events: none;
   padding-top: 100px;
 }

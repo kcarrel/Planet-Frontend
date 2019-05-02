@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
@@ -11,17 +10,12 @@ import Typography from '@material-ui/core/Typography';
 import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
 
-import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -211,7 +205,7 @@ class Suggestions extends Component {
         { this.state.yelpActive ? (
           this.state.yelp.map(data => {
           return <GridListTile style={{width: 400}} key={data.id}>
-          <a target="_blank" href={data.url}>
+          <a target="_blank" rel="noopener noreferrer" href={data.url}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
@@ -241,7 +235,7 @@ class Suggestions extends Component {
           this.state.ticketmaster.map(data => {
             let url = data.url
           return <GridListTile style={{width: 400}} key={data.id}>
-          <a target="_blank" href={url}>
+          <a target="_blank" rel="noopener noreferrer" href={url}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
