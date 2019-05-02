@@ -132,7 +132,7 @@ class Confirmed extends Component {
           })
           .then(response => response.json())
           .then(dates => {
-            if (dates.length > 0 ) {
+            if (dates.length > 0 && dates.date_interest.date_post !== null ) {
               confirmed.push(dates[0])
               this.setState({
                 respondedDates: confirmed,

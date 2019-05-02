@@ -11,6 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
 import GridList from '@material-ui/core/GridList';
+import Grid from '@material-ui/core/Grid';
+
 import Avatar from '@material-ui/core/Avatar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import FormControl from '@material-ui/core/FormControl';
@@ -70,6 +72,7 @@ const styles = theme => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    overflow: 'scroll',
   },
   media: {
     // ⚠️ object-fit is not supported by IE 11.
@@ -78,11 +81,11 @@ const styles = theme => ({
   textField: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
-    width: 100 ,
+    width: 200,
   },
   gridList: {
-   width: 900,
-   height: 900,
+   width: 1000,
+   height: 1000,
    justify: 'center',
 
  },
@@ -219,12 +222,11 @@ class DatePosts extends Component {
     return (
       <main className={classes.main}>
 
-        <GridList id="list" cellHeight={700} cellPadding={50} className={classes.gridList}>
+        <GridList id="list" cellHeight={500} cellPadding={50} className={classes.gridList}>
         { this.state.haveDates ? (
           this.state.dates.map(data => {
-          return <GridListTile style={{width: 400}} key={data.id}>
+          return <GridListTile style={{width: 600, height:500}} className="tile" key={data.id}>
           <Card className={classes.card}>
-            <CardActionArea>
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
@@ -241,13 +243,19 @@ class DatePosts extends Component {
                   {data.description}
                 </Typography>
               </CardContent>
-            </CardActionArea>
+              <Grid container className={classes.root}>
+                <Grid item xs={12}>
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                  >
             <TextField
               name='message'
               placeholder="Send the poster a message!"
               multiline={true}
-              rows={8}
-              rowsMax={8}
+              rows={2}
               className={classes.textArea}
               onChange={this.handleChange}
             />
@@ -276,7 +284,9 @@ class DatePosts extends Component {
               >
               I'm interested!
             </Button>
-
+            </Grid>
+            </Grid>
+          </Grid>
           </Card>
         </GridListTile>
 

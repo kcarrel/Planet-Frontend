@@ -7,12 +7,15 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link, Redirect } from 'react-router-dom';
-import GridList from '@material-ui/core/GridList';
 import GridListTile from '@material-ui/core/GridListTile';
-import CardActionArea from '@material-ui/core/CardActionArea';
+import Grid from '@material-ui/core/Grid';
+import GridList from '@material-ui/core/GridList';
 
 
 const styles = theme => ({
+  root: {
+    flexGrow: 1,
+  },
   main: {
     width: 'auto',
     display: 'flex',
@@ -115,7 +118,8 @@ class YourDates extends Component {
 
 
         {this.state.dates.map(data => {
-          return <GridListTile style={{width: 400}} key={data.id}>
+          return <GridList id="list" cellHeight={700} cellPadding={50} className={classes.gridList}>
+          <GridListTile style={{width: 400, height: 400}} key={data.id}>
           <Card className={classes.card}>
               <CardMedia
                 component="img"
@@ -133,28 +137,39 @@ class YourDates extends Component {
                   {data.description}
                 </Typography>
               </CardContent>
+          <Grid container className={classes.root}>
+            <Grid item xs={12}>
+            <Grid
+                container
+                direction="row"
+                justify="center"
+                alignItems="center"
+              >
+              <Button
+                onClick={localStorage.setItem("hi", data.id)}
+                component={Link} to="/editDate"
+                type="submit"
+                variant="contained"
+                color="primary"
+                className={classes.submit}>
+                Edit
+              </Button>
+              <Button
+                onClick={() => this.deleteEvent(data)}
+                type="submit"
+                variant="contained"
+                color="primary"
+                spacing={16}
+                className={classes.submit}>
+                Delete
+              </Button>
+            </Grid>
+            </Grid>
+          </Grid>
 
-            <Button
-              onClick={localStorage.setItem("hi", data.id)}
-              component={Link} to="/editDate"
-              type="submit"
-              sizeLarge
-              variant="contained"
-              color="primary"
-              className={classes.submit}>
-              Edit
-            </Button>
-            <Button
-              onClick={() => this.deleteEvent(data)}
-              type="submit"
-              sizeLarge
-              variant="contained"
-              color="primary"
-              className={classes.submit}>
-              Delete
-            </Button>
           </Card>
         </GridListTile>
+      </GridList>
 
         })
       }

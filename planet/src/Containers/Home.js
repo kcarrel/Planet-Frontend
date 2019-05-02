@@ -42,7 +42,9 @@ class Home extends Component {
 
 
   render() {
-  
+    if (localStorage.getItem('UserID')) {
+      return <Redirect to='/dateposts'/>
+    }
     const { classes } = this.props;
     return (
     <main className={classes.main}>
