@@ -189,8 +189,16 @@ const styles = theme => ({
           helperText="Type of date"
           margin="normal"
             >
-            <MenuItem key='event' value='event'>
-              Event(concert, show, etc...)
+            <MenuItem key='sports' value='sports'>
+              Sport
+            </MenuItem>
+
+            <MenuItem key='music' value='music'>
+              Music
+            </MenuItem>
+
+            <MenuItem key='animals' value='animals'>
+              Animals
             </MenuItem>
 
             <MenuItem key='restaurant' value='restaurant'>
@@ -207,6 +215,22 @@ const styles = theme => ({
 
             <MenuItem key='arts' value='arts'>
               Art/Culture
+            </MenuItem>
+
+            <MenuItem key='coffee' value='coffee'>
+              Coffee
+            </MenuItem>
+
+            <MenuItem key='parks' value='parks'>
+              Outdoors
+            </MenuItem>
+
+            <MenuItem key='nightlife' value='nightlife'>
+              Nightlife
+            </MenuItem>
+
+            <MenuItem key='other' value='other'>
+              Other
             </MenuItem>
 
             </TextField>

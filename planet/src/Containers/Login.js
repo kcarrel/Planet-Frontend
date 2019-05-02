@@ -78,6 +78,8 @@ class Login extends Component {
       .then(r => r.json())
       .then(json => {
         if (json.user) {
+          localStorage.setItem('ticketmaster', json.ticketmaster);
+          localStorage.setItem('yelp', json.yelp);
           localStorage.setItem('UserID', json.user.id);
           localStorage.setItem('UserEmail', json.user.email);
           localStorage.setItem('Token', json.token);

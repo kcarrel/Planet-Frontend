@@ -247,7 +247,8 @@ const styles = theme => ({
     })
       .then(r => r.json())
       .then(json => {
-        console.log('hi', json)
+        localStorage.setItem('ticketmaster', json.ticketmaster);
+        localStorage.setItem('yelp', json.yelp);
         localStorage.setItem('UserID', json.user.id);
         localStorage.setItem('Token', json.jwt);
         localStorage.setItem('Email', json.user.email);

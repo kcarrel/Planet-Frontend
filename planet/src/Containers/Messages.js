@@ -16,7 +16,8 @@ const styles = theme => ({
     display: 'block', // Fix IE 11 issue.
     marginLeft: 50,
     marginRight: 50,
-      width: 700,
+      width: 1000,
+      height: '100vh',
       marginLeft: 'auto',
       marginRight: 'auto',
   },

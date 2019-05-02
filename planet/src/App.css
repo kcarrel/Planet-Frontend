@@ -1,4 +1,4 @@
-body {
+body, html {
   background-image: url('./images/star-background.jpg');
   background-size: cover;
   height: 100vh;

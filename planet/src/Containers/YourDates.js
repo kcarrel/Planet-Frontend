@@ -25,6 +25,7 @@ const styles = theme => ({
     marginLeft: 50,
     marginRight: 50,
       width: 1000,
+      height: '100vh',
       marginLeft: 'auto',
       marginRight: 'auto',
   },

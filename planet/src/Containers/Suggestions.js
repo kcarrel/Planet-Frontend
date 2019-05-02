@@ -28,6 +28,7 @@ const styles = theme => ({
     marginLeft: 50,
     marginRight: 50,
       width: 1000,
+      height: '100vh',
       marginLeft: 'auto',
       marginRight: 'auto',
   },
@@ -68,8 +69,8 @@ const styles = theme => ({
     width: 200,
   },
   gridList: {
-   width: 900,
-   height: 900,
+   width: 1000,
+   height: '100vh',
    justify: 'center',
  },
 });
@@ -92,11 +93,12 @@ class Suggestions extends Component {
   //fetch down Yelp suggestions(20 at a time)
   fetchYelp() {
     let location = localStorage.getItem("UserLocation")
+    let yelp = localStorage.getItem("yelp")
 
     let url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${this.state.category}&location=${location}`
     fetch(url, {
       'headers': {
-        'Authorization': "Bearer YAcnqZXeGC2n8VCiRTTDaR7Cm5PSV1ZPt9fakWKzAttuZps7bi_AasVaM0Hs0J7PF7OSJstG3fv6kQC_k5cC6W0W3LljzjlU65wNL2jK2Hlu1PcZ7s9G4xiFPjm_XHYx"
+        'Authorization': `Bearer ${yelp}`
       }
     })
     .then(resp => resp.json())
@@ -107,10 +109,11 @@ class Suggestions extends Component {
 
   //fetch down TicketMaster suggestions
   fetchTicketmaster() {
+    let ticketmaster = localStorage.getItem("ticketmaster")
     let category = this.state.category
     let location = localStorage.getItem("UserLocation")
     let date = this.state.date
-    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=hwrR44RmwHzBP1VteR2Adcd5ObVsALUR`)
+    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=${ticketmaster}`)
     .then(resp => resp.json())
     .then(data => {
       this.setState({ticketmaster: data._embedded.events})
@@ -123,7 +126,7 @@ class Suggestions extends Component {
 
   handleSubmit = (ev) => {
     ev.preventDefault()
-    if (this.state.category === 'event') {
+    if (this.state.category === 'sports' || this.state.category === 'music') {
       this.setState({yelpActive: false})
       this.fetchTicketmaster()
     } else {
@@ -165,8 +168,16 @@ class Suggestions extends Component {
               helperText="Type of date"
               margin="normal"
                 >
-                <MenuItem key='event' value='event'>
-                  Event(concert, show, etc...)
+                <MenuItem key='sports' value='sports'>
+                  Sports
+                </MenuItem>
+
+                <MenuItem key='music' value='music'>
+                  Music
+                </MenuItem>
+
+                <MenuItem key='animals' value='animals'>
+                  Animals
                 </MenuItem>
 
                 <MenuItem key='restaurant' value='restaurant'>
@@ -184,6 +195,19 @@ class Suggestions extends Component {
                 <MenuItem key='arts' value='arts'>
                   Art/Culture
                 </MenuItem>
+
+                <MenuItem key='coffee' value='coffee'>
+                  Coffee
+                </MenuItem>
+
+                <MenuItem key='parks' value='parks'>
+                  Outdoors
+                </MenuItem>
+
+                <MenuItem key='nightlife' value='nightlife'>
+                  Nightlife
+                </MenuItem>
+
 
                 </TextField>
             </FormControl>
