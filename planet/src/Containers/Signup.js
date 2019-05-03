@@ -169,14 +169,18 @@ const styles = theme => ({
     })
       .then(r => r.json())
       .then(json => {
-        localStorage.setItem('ticketmaster', json.ticketmaster);
-        localStorage.setItem('yelp', json.yelp);
-        localStorage.setItem('UserID', json.user.id);
-        localStorage.setItem('Token', json.jwt);
-        localStorage.setItem('Email', json.user.email);
-        this.createProfile()
-      })
-    }
+        if (json.user) {
+          localStorage.setItem('ticketmaster', json.ticketmaster);
+          localStorage.setItem('yelp', json.yelp);
+          localStorage.setItem('UserID', json.user.id);
+          localStorage.setItem('Token', json.jwt);
+          localStorage.setItem('Email', json.user.email);
+          this.createProfile()
+      } else {
+        alert("Please fill out all fields. Thank you!")
+      }
+    })
+  }
 
   createProfile() {
     fetch('http://localhost:3000/profiles', {

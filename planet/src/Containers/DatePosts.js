@@ -124,7 +124,6 @@ class DatePosts extends Component {
       userPronoun = 'n'
     }
     profiles.map(profile => {
-      console.log(profile)
       let pronoun = ''
       if (profile.pronouns === 'she/her') {
         pronoun = 'w'

@@ -51,7 +51,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   card: {
-    maxWidth: 900,
+    maxWidth: 1000,
     alignContent: 'center',
     justify: 'center',
     marginTop: 50,
@@ -230,7 +230,7 @@ class Suggestions extends Component {
           this.state.yelp.map(data => {
           return <GridListTile style={{width: 400}} key={data.id}>
           <a target="_blank" rel="noopener noreferrer" href={data.url}>
-          <Card className={classes.card}>
+          <Card style={{width: 500, height:500}} className={classes.card}>
             <CardActionArea>
               <CardMedia
                 component="img"

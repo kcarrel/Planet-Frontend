@@ -74,7 +74,7 @@ class ButtonAppBar extends React.Component {
        onClose={this.handleMenuClose}
      >
        <MenuItem component={Link} to="/profile" onClick={this.handleMenuClose}> Edit Profile</MenuItem>
-       <MenuItem  component={Link} to="/" onClick={(ev) => this.props.clearApp(ev)}>Logout</MenuItem>
+       <MenuItem  component={Link} target='_blank' to="/" onClick={(ev) => this.props.clearApp(ev)}>Logout</MenuItem>
      </Menu>
    );
 
