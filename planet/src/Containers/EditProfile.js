@@ -230,7 +230,7 @@ class EditProfile extends Component {
     }
 
     patchUser() {
-      fetch(`http://localhost:3000/users/${localStorage.getItem('UserID')}`, {
+      fetch(`https://dateplanet.herokuapp.com/users/${localStorage.getItem('UserID')}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -252,7 +252,7 @@ class EditProfile extends Component {
     }
 
     patchProfile() {
-      fetch(`http://localhost:3000/profiles/${localStorage.getItem('UserID')}`, {
+      fetch(`https://dateplanet.herokuapp.com/profiles/${localStorage.getItem('UserID')}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -286,8 +286,9 @@ class EditProfile extends Component {
         localStorage.setItem('UserMin', json.min_age_preference);
         localStorage.setItem('UserBio', json.biography);
         localStorage.setItem('UserGenderPref', pref);
-
       })
+      .then(alert("Profile has been edited!"))
+      .then(window.location.href='/dateposts')
     }
 
 

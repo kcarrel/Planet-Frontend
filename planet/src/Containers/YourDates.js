@@ -66,8 +66,8 @@ const styles = theme => ({
     width: 200,
   },
   gridList: {
-   width: 900,
-   height: 900,
+    width: 1000,
+    height: '100vh',
    justify: 'center',
  },
 });
@@ -77,6 +77,7 @@ class YourDates extends Component {
     super(props)
     this.state = {
       dates: [],
+      dateDeleted: null
     }
     this.fetchDates()
     this.deleteEvent = this.deleteEvent.bind(this)
@@ -86,7 +87,7 @@ class YourDates extends Component {
 
   //fetch down all Dates for a user
   fetchDates() {
-    fetch('http://localhost:3000/seeDates', {
+    fetch('https://dateplanet.herokuapp.com/seeDates', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -99,12 +100,15 @@ class YourDates extends Component {
   }
 
   deleteEvent(data) {
-    fetch(`http://localhost:3000/date_posts/${data.id}`, {
+    fetch(`https://dateplanet.herokuapp.com/date_posts/${data.id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
       }
-    }).then(window.location.href='/yourdates')
+    })
+    .then(response => response.json())
+    .then(alert("Date deleted!"))
+    .then(window.location.href='/yourdates')
   }
 
 
@@ -117,10 +121,9 @@ class YourDates extends Component {
     return (
       <main className={classes.main}>
 
-
+        <GridList id="list" cellHeight={200} cellPadding={50} className={classes.gridList}>
         {this.state.dates.map(data => {
-          return <GridList id="list" cellHeight={700} cellPadding={50} className={classes.gridList}>
-          <GridListTile style={{width: 400, height: 400}} key={data.id}>
+          return <GridListTile style={{width: 400, height: 400}} key={data.id}>
           <Card className={classes.card}>
               <CardMedia
                 component="img"
@@ -170,10 +173,11 @@ class YourDates extends Component {
 
           </Card>
         </GridListTile>
-      </GridList>
-
         })
+
       }
+    </GridList>
+
     </main>
     );
   }

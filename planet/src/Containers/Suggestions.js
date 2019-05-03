@@ -92,7 +92,7 @@ class Suggestions extends Component {
   //fetch down Yelp suggestions(20 at a time)
   fetchYelp() {
     let location = localStorage.getItem("UserLocation")
-    fetch(`http://localhost:3000/yelp/${location}_${this.state.category}`, {
+    fetch(`https://dateplanet.herokuapp.com/yelp/${location}_${this.state.category}`, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
       },
@@ -108,7 +108,7 @@ class Suggestions extends Component {
     let ticketmaster = localStorage.getItem("ticketmaster")
     let category = this.state.category
     let location = localStorage.getItem("UserLocation")
-    fetch(`http://localhost:3000/ticketmaster/${location}_${this.state.category}`, {
+    fetch(`https://dateplanet.herokuapp.com/ticketmaster/${location}_${this.state.category}`, {
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json',

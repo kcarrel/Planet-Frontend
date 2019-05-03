@@ -57,7 +57,7 @@ class SeeProfile extends Component {
   }
 
   fetchProfile() {
-    fetch((`http://localhost:3000/profiles/${localStorage.getItem('profile')}`), {
+    fetch((`https://dateplanet.herokuapp.com/profiles/${localStorage.getItem('profile')}`), {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`

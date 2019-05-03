@@ -62,7 +62,7 @@ class Login extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault()
     //post to user database
-      fetch('http://localhost:3000/profile', {
+      fetch('https://dateplanet.herokuapp.com/profile', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -91,7 +91,7 @@ class Login extends Component {
     }
 
   getProfile() {
-    fetch((`http://localhost:3000/profiles/${localStorage.getItem('UserID')}`), {
+    fetch((`https://dateplanet.herokuapp.com/profiles/${localStorage.getItem('UserID')}`), {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json',

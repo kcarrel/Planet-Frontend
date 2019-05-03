@@ -94,7 +94,8 @@ const styles = theme => ({
       title: '',
       date: '',
       description: '',
-      category: ''
+      category: '',
+      dateCreated: null
     }
 
   }
@@ -112,7 +113,7 @@ const styles = theme => ({
   }
 
     postDatePost() {
-      fetch('http://localhost:3000/date_posts', {
+      fetch('https://dateplanet.herokuapp.com/date_posts', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -129,6 +130,8 @@ const styles = theme => ({
         }
       })
     })
+      .then(response => response.json())
+      .then(alert("Date created!"))
       .then(window.location.href='/yourdates')
     }
 
@@ -239,10 +242,10 @@ const styles = theme => ({
 
           <TextField
             name='description'
-            placeholder="Describe the very essence of your being or die alone!"
+            placeholder="Describe the very essence of this date or die alone!"
             multiline={true}
-            rows={8}
-            rowsMax={8}
+            rows={4}
+            rowsMax={4}
             className={classes.textArea}
             onChange={this.handleChange}
           />

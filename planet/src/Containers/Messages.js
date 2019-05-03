@@ -73,7 +73,7 @@ class Messages extends Component {
 
   //delete a
   deleteEvent(data) {
-    fetch(`http://localhost:3000/date_interests/${data.id}`, {
+    fetch(`https://dateplanet.herokuapp.com/date_interests/${data.id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -84,7 +84,7 @@ class Messages extends Component {
 
   //confirm a date interest and create a date decision
   createResponse(data) {
-    fetch('http://localhost:3000/date_decisions', {
+    fetch('https://dateplanet.herokuapp.com/date_decisions', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -106,7 +106,7 @@ class Messages extends Component {
 
   //fetch down all Dates for a user
   fetchDates() {
-    fetch('http://localhost:3000/seeDates', {
+    fetch('https://dateplanet.herokuapp.com/seeDates', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -132,7 +132,7 @@ class Messages extends Component {
 
   //fetch down all date interests for a date that the current user has posted
   fetchInterest(date) {
-    fetch(`http://localhost:3000/fetch/${date.id}`, {
+    fetch(`https://dateplanet.herokuapp.com/fetch/${date.id}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`

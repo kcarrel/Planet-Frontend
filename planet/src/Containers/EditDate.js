@@ -95,7 +95,7 @@ const styles = theme => ({
       title: '',
       date: '',
       description: '',
-      category: ''
+      category: '',
     }
     this.fetchDate()
   }
@@ -106,12 +106,11 @@ const styles = theme => ({
 
   handleSubmit(ev) {
     ev.preventDefault()
-    console.log('hi you are submitting')
     this.postEditDate()
   }
 
   fetchDate() {
-    fetch((`http://localhost:3000/fetch/${localStorage.getItem('hi')}`), {
+    fetch((`https://dateplanet.herokuapp.com/fetch/${localStorage.getItem('hi')}`), {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -128,8 +127,10 @@ const styles = theme => ({
     })
   }
 
+
+
     postEditDate() {
-      fetch(`http://localhost:3000/date_posts/${localStorage.getItem('hi')}`, {
+      fetch(`https://dateplanet.herokuapp.com/date_posts/${localStorage.getItem('hi')}`, {
       method: 'PATCH',
       headers: {
         'Content-Type': 'application/json',
@@ -146,6 +147,10 @@ const styles = theme => ({
           }
         })
       })
+      .then(response => response.json())
+      .then(res => console.log(res))
+      .then(alert("Date edited!"))
+      .then(window.location.href='/yourdates')
     }
 
 
@@ -197,7 +202,6 @@ const styles = theme => ({
           value={this.state.category}
           name="category"
           placeholder={this.state.category}
-
           onChange={this.handleChange}
           SelectProps={{
             MenuProps: {

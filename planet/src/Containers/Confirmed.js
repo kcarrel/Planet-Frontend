@@ -86,7 +86,7 @@ class Confirmed extends Component {
 
   //fetch down all confirmed DateDecisions that were posted by current user
   fetchConfirmedByUser() {
-    fetch(`http://localhost:3000/fetch_by_user/${localStorage.getItem("UserID")}`, {
+    fetch(`https://dateplanet.herokuapp.com/fetch_by_user/${localStorage.getItem("UserID")}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -105,7 +105,7 @@ class Confirmed extends Component {
   //fetch down all the DateResponses that current user has created to compare
   // against DateDecisions
   fetchConfirmedByPoster() {
-    fetch(`http://localhost:3000/find/${localStorage.getItem("UserID")}`, {
+    fetch(`https://dateplanet.herokuapp.com/find/${localStorage.getItem("UserID")}`, {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -124,7 +124,7 @@ class Confirmed extends Component {
     fetchDecisions() {
       let confirmed = []
       this.state.interests.forEach(interest => {
-        fetch(`http://localhost:3000/fetch_by_id/${interest.id}`, {
+        fetch(`https://dateplanet.herokuapp.com/fetch_by_id/${interest.id}`, {
             method: 'GET',
             headers: {
               Authorization: `Bearer ${localStorage.getItem('Token')}`
