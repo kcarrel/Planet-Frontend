@@ -455,10 +455,10 @@ class EditProfile extends Component {
 
           <TextField
             name='biography'
-            placeholder={"Descibe your life or die alone " + localStorage.getItem("UserBio")}
+            placeholder={"Biography: "+ localStorage.getItem("UserBio")}
             multiline={true}
             rows={4}
-            rowsMax={8}
+            rowsMax={4}
             className={classes.textArea}
             onChange={this.handleChange}
           />

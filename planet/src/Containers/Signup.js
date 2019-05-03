@@ -154,7 +154,7 @@ const styles = theme => ({
   }
 
     signupUser() {
-      fetch('http://localhost:3000/users', {
+      fetch('https://dateplanet.herokuapp.com/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -183,7 +183,7 @@ const styles = theme => ({
   }
 
   createProfile() {
-    fetch('http://localhost:3000/profiles', {
+    fetch('https://dateplanet.herokuapp.com/profiles', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -381,7 +381,7 @@ const styles = theme => ({
 
           <TextField
             name='biography'
-            placeholder="Describe the very essence of your being or die alone!"
+            placeholder="Describe yourself to future suitors!"
             multiline={true}
             rows={4}
             rowsMax={8}
