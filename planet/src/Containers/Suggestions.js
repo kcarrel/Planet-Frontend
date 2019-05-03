@@ -82,7 +82,6 @@ class Suggestions extends Component {
       yelp: [],
       ticketmaster: [],
       location: '',
-      date: '',
       category: '',
       yelpActive: null
     }
@@ -93,13 +92,10 @@ class Suggestions extends Component {
   //fetch down Yelp suggestions(20 at a time)
   fetchYelp() {
     let location = localStorage.getItem("UserLocation")
-    let yelp = localStorage.getItem("yelp")
-
-    let url = `https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/businesses/search?term=${this.state.category}&location=${location}`
-    fetch(url, {
-      'headers': {
-        'Authorization': `Bearer ${yelp}`
-      }
+    fetch(`http://localhost:3000/yelp/${location}_${this.state.category}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('Token')}`
+      },
     })
     .then(resp => resp.json())
     .then(data => {
@@ -112,8 +108,13 @@ class Suggestions extends Component {
     let ticketmaster = localStorage.getItem("ticketmaster")
     let category = this.state.category
     let location = localStorage.getItem("UserLocation")
-    let date = this.state.date
-    fetch(`https://app.ticketmaster.com/discovery/v2/events.json?city=${location}&apikey=${ticketmaster}`)
+    fetch(`http://localhost:3000/ticketmaster/${location}_${this.state.category}`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${localStorage.getItem('Token')}`
+      },
+    })
     .then(resp => resp.json())
     .then(data => {
       this.setState({ticketmaster: data._embedded.events})
