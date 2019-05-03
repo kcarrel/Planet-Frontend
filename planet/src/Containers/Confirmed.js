@@ -21,6 +21,7 @@ const styles = theme => ({
     marginLeft: 50,
     marginRight: 50,
       width: 1000,
+      height: '100vh',
       marginLeft: 'auto',
       marginRight: 'auto',
   },
@@ -61,8 +62,8 @@ const styles = theme => ({
     width: 200,
   },
   gridList: {
-   width: 900,
-   height: 900,
+   width: 1000,
+   height: '100vh',
    justify: 'center',
  },
 });
@@ -131,15 +132,17 @@ class Confirmed extends Component {
           })
           .then(response => response.json())
           .then(dates => {
-            if (dates.length > 0 && dates.date_interest.date_post !== null ) {
-              confirmed.push(dates[0])
-              this.setState({
-                respondedDates: confirmed,
-                haveResDates: true
-              })
-            }
+              for (let i = 0; i < dates.length; i++) {
+                if (dates[i].date_interest.date_post !== null) {
+                  confirmed.push(dates[i])
+                }
+                this.setState({
+                  respondedDates: confirmed,
+                  haveResDates: true
+                })
+              }
           })
-        })
+      })
     }
 
   //fetch all date_interests that the current user has created(eg responded to a posted date)

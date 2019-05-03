@@ -124,6 +124,7 @@ class DatePosts extends Component {
       userPronoun = 'n'
     }
     profiles.map(profile => {
+      console.log(profile)
       let pronoun = ''
       if (profile.pronouns === 'she/her') {
         pronoun = 'w'
@@ -257,7 +258,7 @@ class DatePosts extends Component {
 
             <Button
               margin="normal"
-              onClick={() => localStorage.setItem("profile", data.id)}
+              onClick={() => localStorage.setItem("profile", data.user_id)}
               component={Link} to="/seeprofile"
               type="submit"
               sizeLarge
