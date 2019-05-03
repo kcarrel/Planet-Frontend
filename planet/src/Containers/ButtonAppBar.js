@@ -90,16 +90,19 @@ class ButtonAppBar extends React.Component {
          <Button component={Link} to="/datepost" color="inherit">Create a Date</Button>
        </MenuItem>
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
-         <Button component={Link} to="/example" color="inherit">See date example</Button>
+         <Button component={Link} to="/example" color="inherit">Date Example</Button>
        </MenuItem>
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
-         <Button component={Link} to="/dateposts" color="inherit">Date Posts</Button>
+         <Button component={Link} to="/dateposts" color="inherit">Available Dates</Button>
        </MenuItem>
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
          <Button component={Link} to="/suggestions" color="inherit">Date Suggestions</Button>
        </MenuItem>
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
-        <Button component={Link} to="/yourdates" color="inherit">Your Dates</Button>
+        <Button component={Link} to="/yourdates" color="inherit">Your Created Dates</Button>
+       </MenuItem>
+       <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
+        <Button component={Link} to="/messages" color="inherit">Interested in Your Dates</Button>
        </MenuItem>
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
         <Button component={Link} to="/confirmed" color="inherit">Confirmed Dates</Button>
@@ -110,16 +113,13 @@ class ButtonAppBar extends React.Component {
     <div className={classes.root}>
         <AppBar position="static">
           <Toolbar style={{ backgroundColor: '#04151F' }}>
-            <IconButton component={Link} to="/" onClick={(ev) => this.props.clearApp(ev)} className={classes.button} aria-label="Home">
+            <IconButton component={Link} to="/" className={classes.button} aria-label="Home">
               <img src={IconPlanet} alt="" width="46" height="42" />
             </IconButton>
 
 
             <div className={classes.grow} />
             <div className={classes.sectionDesktop}>
-              <IconButton component={Link} to="/messages" color="inherit">
-                <MailIcon/>
-              </IconButton>
 
               <IconButton
                 aria-owns={isMenuOpen ? 'material-appbar' : undefined}

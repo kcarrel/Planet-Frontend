@@ -99,7 +99,6 @@ class Suggestions extends Component {
     })
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
       this.setState({yelp: data.businesses})
     })
   }
@@ -118,7 +117,6 @@ class Suggestions extends Component {
     })
     .then(resp => resp.json())
     .then(data => {
-      console.log(data)
       this.setState({ticketmaster: data._embedded.events})
     })
   }
@@ -130,10 +128,10 @@ class Suggestions extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault()
     if (this.state.category === 'sports' || this.state.category === 'music') {
-      //this.setState({yelpActive: false})
+      this.setState({yelpActive: false})
       this.fetchTicketmaster()
     } else {
-      //this.setState({yelpActive: true})
+      this.setState({yelpActive: true})
       this.fetchYelp()
 
     }

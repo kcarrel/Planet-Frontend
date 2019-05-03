@@ -154,7 +154,7 @@ const styles = theme => ({
   }
 
     signupUser() {
-      fetch('https://dateplanet.herokuapp.com/users', {
+      fetch('http://localhost:3000/users', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -183,7 +183,7 @@ const styles = theme => ({
   }
 
   createProfile() {
-    fetch('https://dateplanet.herokuapp.com/profiles', {
+    fetch('http://localhost:3000/profiles', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -342,6 +342,7 @@ const styles = theme => ({
       value={this.state.age}
       onChange={this.handleChange}
       type="number"
+      InputProps={{ inputProps: { min: 21, max: 1000 } }}
       className={classes.textField}
       InputLabelProps={{
         shrink: true,
@@ -354,6 +355,7 @@ const styles = theme => ({
           label="Minimum Age Preference"
           name='min_age_preference'
           value={this.state.min_age_preference}
+          InputProps={{ inputProps: { min: 21, max: 1000 } }}
           onChange={this.handleChange}
           type="number"
           className={classes.textField}
@@ -364,6 +366,7 @@ const styles = theme => ({
         />
           <TextField
             id="standard-number"
+            InputProps={{ inputProps: { min: 21, max: 100 } }}
             label="Maximum Age Preference"
             name='max_age_preference'
             value={this.state.max_age_preference}

@@ -144,9 +144,13 @@ class Messages extends Component {
       for (let i = 0; i < jsonlength; i ++) {
         this.state.messages.push(interest[i])
       }
+      if (this.state.messages.length === 0) {
+        alert('Generate some interest by posting a date!')
+      } else {
       this.setState({
         messages: this.state.messages
         })
+      }
     })
   }
 
