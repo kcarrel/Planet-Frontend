@@ -144,7 +144,7 @@ class DatePosts extends Component {
   //fetch down all profiles that are not the current users
   fetchProfiles() {
     //gotta send the token over
-    fetch('http://localhost:3000/all', {
+    fetch('https://dateplanet.herokuapp.com/all', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -204,7 +204,7 @@ class DatePosts extends Component {
   fetchDates() {
     let newDates = []
     this.state.matches.map(match => {
-    fetch((`http://localhost:3000/date_posts/${match.user_id}`), {
+    fetch((`https://dateplanet.herokuapp.com/date_posts/${match.user_id}`), {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -230,7 +230,7 @@ class DatePosts extends Component {
   }
 
   handleInterest(ev, data) {
-    fetch('http://localhost:3000/date_interests', {
+    fetch('https://dateplanet.herokuapp.com/date_interests', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
