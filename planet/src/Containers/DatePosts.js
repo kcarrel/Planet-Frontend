@@ -99,7 +99,7 @@ class DatePosts extends Component {
   //fetch down all profiles that are not the current users
   fetchProfiles() {
     //gotta send the token over
-    fetch('https://dateplanet.herokuapp.com/all', {
+    fetch('http://localhost:3000/all', {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -159,7 +159,7 @@ class DatePosts extends Component {
   fetchDates() {
     let newDates = []
     this.state.matches.map(match => {
-    fetch((`https://dateplanet.herokuapp.com/date_posts/${match.user_id}`), {
+    fetch((`http://localhost:3000/date_posts/${match.user_id}`), {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('Token')}`
@@ -171,8 +171,9 @@ class DatePosts extends Component {
       for (let i = 0; i < jsonlength; i ++) {
         this.state.dates.push(json[i])
       }
+      let sorted = this.state.dates.sort((a, b) => (a.user_id > b.user_id) ? 1 : -1)
       this.setState({
-        dates: this.state.dates
+        dates: sorted
         })
       })
       this.setState({haveDates: true})
@@ -184,7 +185,7 @@ class DatePosts extends Component {
   }
 
   handleInterest(ev, data) {
-    fetch('https://dateplanet.herokuapp.com/date_interests', {
+    fetch('http://localhost:3000/date_interests', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -208,6 +209,7 @@ class DatePosts extends Component {
     if (!localStorage.getItem("UserID")) {
       return <Redirect to='/'/>
     }
+
     localStorage.removeItem("profile")
     //from material ui
     const { classes } = this.props;
