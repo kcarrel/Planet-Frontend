@@ -7,12 +7,23 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Description from '@material-ui/icons/Description';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
+import red from '@material-ui/core/colors/red';
+import purple from '@material-ui/core/colors/purple';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
 
 
 
@@ -37,7 +48,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#F23A2F',
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -146,8 +157,8 @@ const styles = theme => ({
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
-        <Avatar style={{ backgroundColor: '#04151F' }} className={classes.avatar}>
-          <LockOutlinedIcon style={{ backgroundColor: '#04151F' }}/>
+        <Avatar style={{color: 'FF7F68'}} className={classes.avatar}>
+          <Description />
         </Avatar>
         <Typography component="h1" variant="h5">
           DatePost
@@ -250,6 +261,7 @@ const styles = theme => ({
             onChange={this.handleChange}
           />
 
+          <MuiThemeProvider theme={theme}>
           <Button
             margin="normal"
             onClick={(ev) => this.handleSubmit(ev)}
@@ -261,6 +273,7 @@ const styles = theme => ({
             >
             Create a Date
           </Button>
+        </MuiThemeProvider>
 
 
         </form>

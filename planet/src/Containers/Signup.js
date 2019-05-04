@@ -10,16 +10,61 @@ import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
+import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Redirect } from 'react-router-dom';
+import red from '@material-ui/core/colors/red';
+import purple from '@material-ui/core/colors/purple';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
-
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
 const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  cssRoot: {
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    '&:hover': {
+      backgroundColor: purple[700],
+    },
+  },
+  bootstrapRoot: {
+    boxShadow: 'none',
+    textTransform: 'none',
+    borderRadius: 4,
+    fontSize: 16,
+    padding: '6px 12px',
+    border: '1px solid',
+    backgroundColor: '#007bff',
+    borderColor: '#007bff',
+    '&:hover': {
+      backgroundColor: '#0069d9',
+      borderColor: '#0062cc',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#0062cc',
+      borderColor: '#005cbf',
+    },
+    '&:focus': {
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+    },
+  },
+
   main: {
     width: 'auto',
     display: 'block', // Fix IE 11 issue.
@@ -40,7 +85,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#F23A2F',
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -230,8 +275,8 @@ const styles = theme => ({
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
-        <Avatar style={{ backgroundColor: '#04151F' }} className={classes.avatar}>
-          <LockOutlinedIcon style={{ backgroundColor: '#04151F' }}/>
+        <Avatar style={{color: 'FF7F68'}}className={classes.avatar}>
+          <AccountCircle />
         </Avatar>
         <Typography component="h1" variant="h5">
           Signup
@@ -388,6 +433,7 @@ const styles = theme => ({
             className={classes.textArea}
             onChange={this.handleChange}
           />
+          <MuiThemeProvider theme={theme}>
 
           <Button
             onClick={(ev) => this.handleSubmit(ev)}
@@ -399,6 +445,8 @@ const styles = theme => ({
             >
             Signup
           </Button>
+        </MuiThemeProvider>
+
         </form>
       </Paper>
     </main>

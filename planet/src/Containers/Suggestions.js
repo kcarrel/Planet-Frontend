@@ -16,6 +16,17 @@ import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Redirect } from 'react-router-dom';
+import red from '@material-ui/core/colors/red';
+import purple from '@material-ui/core/colors/purple';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
 
 
 const styles = theme => ({
@@ -52,6 +63,7 @@ const styles = theme => ({
   },
   card: {
     maxWidth: 1000,
+    minHeight: 500,
     alignContent: 'center',
     justify: 'center',
     marginTop: 50,
@@ -73,6 +85,9 @@ const styles = theme => ({
    height: '100vh',
    justify: 'center',
  },
+ text: {
+   textAlign: 'center'
+ }
 });
 
 class Suggestions extends Component {
@@ -212,6 +227,7 @@ class Suggestions extends Component {
 
                 </TextField>
             </FormControl>
+            <MuiThemeProvider theme={theme}>
 
             <Button
               onClick={this.handleSubmit}
@@ -222,6 +238,7 @@ class Suggestions extends Component {
               className={classes.submit}>
               Generate
             </Button>
+          </MuiThemeProvider>
           </form>
         </Paper>
 
@@ -229,7 +246,7 @@ class Suggestions extends Component {
 
         { this.state.yelpActive ? (
           this.state.yelp.map(data => {
-          return <GridListTile style={{width: 400}} key={data.id}>
+          return <GridListTile style={{width: 500}} key={data.id}>
           <a target="_blank" rel="noopener noreferrer" href={data.url}>
           <Card style={{width: 500, height:500}} className={classes.card}>
             <CardActionArea>
@@ -241,11 +258,11 @@ class Suggestions extends Component {
                 src={(data.image_url)}
                 title="Date Planet"
               />
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {data.name}
+            <CardContent textAlign='center'>
+                <Typography component="h1">
+                  <b>{data.name}</b>
                 </Typography>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography component="p">
                   {data.location.display_address[0]} {data.location.display_address[1]}
                 </Typography>
               </CardContent>
@@ -259,24 +276,24 @@ class Suggestions extends Component {
         ) : (
           this.state.ticketmaster.map(data => {
             let url = data.url
-          return <GridListTile style={{width: 400}} key={data.id}>
+          return <GridListTile style={{width: 500}} key={data.id}>
           <a target="_blank" rel="noopener noreferrer" href={url}>
-          <Card className={classes.card}>
+          <Card style={{width: 500, height:500}} className={classes.card}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
                 className={classes.media}
-                height="50%"
+                height="200"
                 src={(data.images[0].url)}
                 title="Date Planet"
                 target={data.url}
               />
-              <CardContent>
-                <Typography gutterBottom variant="h4" component="h2">
-                  {data.name}
+            <CardContent id='text' textAlign='center'>
+                <Typography component="h1">
+                  <b>{data.name}</b>
                 </Typography>
-                <Typography gutterBottom variant="h5" component="h2">
+                <Typography component="p">
                   {data.dates.localDate}
                 </Typography>
 

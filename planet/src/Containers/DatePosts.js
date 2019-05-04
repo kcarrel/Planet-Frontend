@@ -11,8 +11,18 @@ import GridList from '@material-ui/core/GridList';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import ListSubheader from '@material-ui/core/ListSubheader';
-
+import red from '@material-ui/core/colors/red';
+import purple from '@material-ui/core/colors/purple';
 import { Link, Redirect } from 'react-router-dom';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
+
 
 const eventImages = ['event', 'event1', 'event2']
 const barImages = ['bar', 'bar1', 'bar2', 'bar3', 'bar4', 'bar5']
@@ -21,7 +31,42 @@ const fitnessImages = ['fit', 'fit0', 'fit1', 'fit2', 'fit3', 'fit4', 'fit5']
 const artsImages = ['art0', 'art1', 'art2', 'art3', 'art4', 'art5']
 
 const styles = theme => ({
-
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  margin: {
+    margin: theme.spacing.unit,
+  },
+  cssRoot: {
+    color: theme.palette.getContrastText(purple[500]),
+    backgroundColor: purple[500],
+    '&:hover': {
+      backgroundColor: purple[700],
+    },
+  },
+  bootstrapRoot: {
+    boxShadow: 'none',
+    textTransform: 'none',
+    borderRadius: 4,
+    fontSize: 16,
+    padding: '6px 12px',
+    border: '1px solid',
+    backgroundColor: '#007bff',
+    borderColor: '#007bff',
+    '&:hover': {
+      backgroundColor: '#0069d9',
+      borderColor: '#0062cc',
+    },
+    '&:active': {
+      boxShadow: 'none',
+      backgroundColor: '#0062cc',
+      borderColor: '#005cbf',
+    },
+    '&:focus': {
+      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
+    },
+  },
   main: {
     width: 'auto',
     display: 'flex',
@@ -256,6 +301,7 @@ class DatePosts extends Component {
               className={classes.textArea}
               onChange={this.handleChange}
             />
+            <MuiThemeProvider theme={theme}>
 
             <Button
               margin="normal"
@@ -281,6 +327,8 @@ class DatePosts extends Component {
               >
               I'm interested!
             </Button>
+          </MuiThemeProvider>
+
             </Grid>
             </Grid>
           </Grid>

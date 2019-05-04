@@ -10,11 +10,22 @@ import { Link, Redirect } from 'react-router-dom';
 import GridListTile from '@material-ui/core/GridListTile';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
+import red from '@material-ui/core/colors/red';
+import purple from '@material-ui/core/colors/purple';
 
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    padding: "10px",
   },
   main: {
     width: 'auto',
@@ -142,13 +153,15 @@ class YourDates extends Component {
                 </Typography>
               </CardContent>
           <Grid container className={classes.root}>
-            <Grid item xs={12}>
+            <Grid item xs={12} >
             <Grid
                 container
                 direction="row"
                 justify="center"
                 alignItems="center"
               >
+              <MuiThemeProvider theme={theme}>
+
               <Button
                 onClick={localStorage.setItem("hi", data.id)}
                 component={Link} to="/editDate"
@@ -167,6 +180,8 @@ class YourDates extends Component {
                 className={classes.submit}>
                 Delete
               </Button>
+            </MuiThemeProvider>
+
             </Grid>
             </Grid>
           </Grid>

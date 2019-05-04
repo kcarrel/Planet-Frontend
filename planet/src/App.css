@@ -42,6 +42,16 @@ body, html {
   justify-content: flex-end;
 }
 
+#bottom {
+  background-color: #F23A2F;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 60px;
+  width: 100%;
+  overflow: hidden;
+}
+
 
 #list {
   display: flex;

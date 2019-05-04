@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import ButtonAppBar from './Containers/ButtonAppBar'
 import StartBar from './Containers/StartBar'
-
 import Login from './Containers/Login'
 import Signup from './Containers/Signup'
 import Home from './Containers/Home'
@@ -15,11 +14,16 @@ import Messages from './Containers/Messages'
 import Confirmed from './Containers/Confirmed'
 import Profile from './Containers/EditProfile'
 import SeeProfile from './Containers/SeeProfile'
-
+import BottomNavigation from '@material-ui/core/BottomNavigation';
+import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
+import RestoreIcon from '@material-ui/icons/Restore';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import LocationOnIcon from '@material-ui/icons/LocationOn';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+
 class App extends Component {
   constructor() {
     super();
@@ -58,6 +62,7 @@ class App extends Component {
  render () {
 
   return (
+
     <div className="App">
       <Router>
         {(this.state.loggedIn) ?
@@ -80,9 +85,17 @@ class App extends Component {
         <Route exact path='/seeprofile' render={(props) => <SeeProfile {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
 
       </Router>
-
-
+      <BottomNavigation
+        id="bottom"
+             showLabels
+           >
+             <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
+             <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
+             <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+           </BottomNavigation>
     </div>
+
+
     );
   }
 }

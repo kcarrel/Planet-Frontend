@@ -112,7 +112,7 @@ class ButtonAppBar extends React.Component {
   return (
     <div className={classes.root}>
         <AppBar position="static">
-          <Toolbar style={{ backgroundColor: '#04151F' }}>
+          <Toolbar style={{ backgroundColor: '#070A11' }}>
             <IconButton component={Link} to="/" className={classes.button} aria-label="Home">
               <img src={IconPlanet} alt="" width="46" height="42" />
             </IconButton>
