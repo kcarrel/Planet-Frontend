@@ -8,19 +8,36 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import GridListTile from '@material-ui/core/GridListTile';
+import GridList from '@material-ui/core/GridList';
+import Grid from '@material-ui/core/Grid';
 
+import red from '@material-ui/core/colors/red';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
 
 const styles = theme => ({
   main: {
-    display: 'block', // Fix IE 11 issue.
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'scroll',
       width: 1000,
-      height: '100vh',
+      height: '80vh',
       marginLeft: 'auto',
       marginRight: 'auto',
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
     display: 'flex',
+    maxWidth: 400,
     flexDirection: 'column',
     alignItems: 'center',
     padding: `${theme.spacing.unit * 2}px ${theme.spacing.unit * 3}px ${theme.spacing.unit * 3}px`,
@@ -34,16 +51,20 @@ const styles = theme => ({
     marginTop: theme.spacing.unit,
   },
   submit: {
-    marginTop: theme.spacing.unit * 3,
+    marginTop: '5px',
+    bottom: 0
   },
   card: {
     maxWidth: 900,
+    minHeight: 500,
     alignContent: 'center',
     justify: 'center',
     marginTop: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    overflow: 'scroll',
+    margin: '16px'
   },
   media: {
     // ⚠️ object-fit is not supported by IE 11.
@@ -53,6 +74,11 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 200,
+  },
+  gridList: {
+   width: 1000,
+   height: '80vh',
+   justify: 'center',
   },
 });
 
@@ -161,29 +187,49 @@ class Messages extends Component {
     return (
       <main className={classes.main}>
 
-
+        <GridList id="list" cellHeight={500} cellPadding={20} className={classes.gridList}>
         {this.state.messages.map(data => {
-          return <Card className={classes.card}>
+          return <GridListTile style={{width: 500, height:500}} className="tile" key={data.id}>
+          <Card className={classes.card}>
               <CardMedia
                 component="img"
                 alt="Contemplative Reptile"
                 className={classes.media}
-                height="10%"
-                image={require("../images/duck.png")}
+                image={require(`../images/${data.date_post.category}.png`)}
                 title="Date Planet"
+                id="picture"
+
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {data.date_post.title}
+                <Typography variant="h5">
+                  {data.date_post.title} on {data.date_post.date}
                 </Typography>
-                <Typography gutterBottom variant="h5" component="h2">
-                  {data.date_post.date}
-                </Typography>
+
                 <Typography gutterBottom variant="h5" component="h2">
                   {data.message}
                 </Typography>
               </CardContent>
-
+              <Grid container className={classes.root}>
+                <Grid item xs={12}>
+                <Grid
+                    container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-end"
+                  >
+            <MuiThemeProvider theme={theme}>
+              <Button
+                margin="normal"
+                onClick={() => localStorage.setItem("profile", data.user_id)}
+                component={Link} to="/seeprofile"
+                type="submit"
+                sizeLarge
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                >
+                See Profile
+              </Button>
             <Button
               onClick={() => this.createResponse(data)}
               component={Link} to="/dateposts"
@@ -204,9 +250,17 @@ class Messages extends Component {
               className={classes.submit}>
               Deny
             </Button>
+          </MuiThemeProvider>
+        </Grid>
+        </Grid>
+      </Grid>
           </Card>
+        </GridListTile>
+
         })
       }
+    </GridList>
+
     </main>
    );
   }

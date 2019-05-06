@@ -143,14 +143,34 @@ const styles = theme => ({
 
   handleChange = (ev) => {
     const value = ev.target.type === 'checkbox' ? ev.target.checked : ev.target.value
-
     this.setState({[ev.target.name]: value})
   }
 
   handleSubmit(ev) {
     ev.preventDefault()
+    if (this.state.age < 21 || this.state.max_age_preference < 21 || this.state.min_age_preference < 21) {
+      alert("Users must be 21 or older to use this application. Please update your selections.")
+    } else if(
+    this.state.email !== '' &&
+    this.state.password !== '' &&
+    this.state.name !== '' &&
+    this.state.pronouns !== '' &&
+    this.state.age !== '' &&
+    this.state.max_age_preference !== '' &&
+    this.state.min_age_preference !== '' &&
+    this.state.location !== '' &&
+    this.state.image !== '' &&
+    this.state.biography !== '') {
+      this.handlePref()
+    } else {
+      alert("Please fill out all fields!")
+      window.location.href="/signup"
+    }
+  }
     //sorting the specified gender of user and matching user's gender preferences for partner before persisting to database
-    if (this.state.gender_preference_men && this.state.gender_preference_women && this.state.gender_preference_nonbinary) {
+
+    handlePref() {
+      if (this.state.gender_preference_men && this.state.gender_preference_women && this.state.gender_preference_nonbinary) {
       this.setState({gender_preference: 'all'})
       this.signupUser()
     } else if (this.state.gender_preference_men && this.state.gender_preference_women)   {
@@ -197,14 +217,10 @@ const styles = theme => ({
       .then(r => r.json())
       .then(json => {
         if (json.user) {
-          localStorage.setItem('ticketmaster', json.ticketmaster);
-          localStorage.setItem('yelp', json.yelp);
           localStorage.setItem('UserID', json.user.id);
           localStorage.setItem('Token', json.jwt);
           localStorage.setItem('Email', json.user.email);
           this.createProfile()
-      } else {
-        alert("Please fill out all fields. Thank you!")
       }
     })
   }
@@ -234,18 +250,22 @@ const styles = theme => ({
     })
     .then(r => r.json())
     .then(json => {
-      localStorage.setItem('UserName', json.name);
-      localStorage.setItem('UserLocation', json.location);
-      localStorage.setItem('UserImage', json.image);
-      localStorage.setItem('UserPronouns', json.pronouns);
-      localStorage.setItem('UserAge', json.age);
-      localStorage.setItem('UserMax', json.max_age_preference);
-      localStorage.setItem('UserMin', json.min_age_preference);
-      localStorage.setItem('UserBio', json.biography);
-      localStorage.setItem('UserGenderPref', json.gender_preference);
-      this.props.toggleLogin()
+      if (json) {
+        localStorage.setItem('UserName', json.name);
+        localStorage.setItem('UserLocation', json.location);
+        localStorage.setItem('UserImage', json.image);
+        localStorage.setItem('UserPronouns', json.pronouns);
+        localStorage.setItem('UserAge', json.age);
+        localStorage.setItem('UserMax', json.max_age_preference);
+        localStorage.setItem('UserMin', json.min_age_preference);
+        localStorage.setItem('UserBio', json.biography);
+        localStorage.setItem('UserGenderPref', json.gender_preference);
+        this.props.toggleLogin()
+      }
     })
   }
+
+
 
   render() {
     if (this.props.loggedIn) {

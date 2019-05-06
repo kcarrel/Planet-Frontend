@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import red from '@material-ui/core/colors/red';
-import purple from '@material-ui/core/colors/purple';
 import { Link, Redirect } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -25,42 +24,7 @@ const theme = createMuiTheme({
 
 
 const styles = theme => ({
-  container: {
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  margin: {
-    margin: theme.spacing.unit,
-  },
-  cssRoot: {
-    color: theme.palette.getContrastText(purple[500]),
-    backgroundColor: purple[500],
-    '&:hover': {
-      backgroundColor: purple[700],
-    },
-  },
-  bootstrapRoot: {
-    boxShadow: 'none',
-    textTransform: 'none',
-    borderRadius: 4,
-    fontSize: 16,
-    padding: '6px 12px',
-    border: '1px solid',
-    backgroundColor: '#007bff',
-    borderColor: '#007bff',
-    '&:hover': {
-      backgroundColor: '#0069d9',
-      borderColor: '#0062cc',
-    },
-    '&:active': {
-      boxShadow: 'none',
-      backgroundColor: '#0062cc',
-      borderColor: '#005cbf',
-    },
-    '&:focus': {
-      boxShadow: '0 0 0 0.2rem rgba(0,123,255,.5)',
-    },
-  },
+  
   main: {
     display: 'flex',
     flexWrap: 'wrap',
