@@ -7,12 +7,22 @@ import FormControl from '@material-ui/core/FormControl';
 import MenuItem from '@material-ui/core/MenuItem';
 import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
+import Description from '@material-ui/icons/Description';
 import { Redirect } from 'react-router-dom';
+import red from '@material-ui/core/colors/red';
+
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
 
 
 
@@ -23,8 +33,7 @@ const styles = theme => ({
     marginLeft: theme.spacing.unit * 3,
     marginRight: theme.spacing.unit * 3,
     [theme.breakpoints.up(400 + theme.spacing.unit * 3 * 2)]: {
-      width: 1000,
-      height: '100vh',
+      width: 800,
       marginLeft: 'auto',
       marginRight: 'auto',
     },
@@ -38,7 +47,7 @@ const styles = theme => ({
   },
   avatar: {
     margin: theme.spacing.unit,
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#F23A2F',
   },
   textField: {
     marginLeft: theme.spacing.unit,
@@ -63,27 +72,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
     textAlign: 'left'
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
-  },
   textArea: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 600,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
   },
 });
 
@@ -164,16 +156,16 @@ const styles = theme => ({
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
-        <Avatar style={{ backgroundColor: '#04151F' }} className={classes.avatar}>
-          <LockOutlinedIcon style={{ backgroundColor: '#04151F' }}/>
+        <Avatar style={{color: 'FF7F68'}} className={classes.avatar}>
+          <Description />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Edit Date
+          Edit Your Date
         </Typography>
         <form className={classes.form}>
           <FormControl  margin="normal" >
             <InputLabel >Title</InputLabel>
-            <Input onChange={this.handleChange} name="title" placeholder={this.state.title} type="text" id="title" autoComplete="title" className={classes.textField} margin="normal"
+            <Input onChange={this.handleChange} name="title" type="text" id="title" autoComplete="Title" className={classes.textField} margin="normal"
               />
           </FormControl>
 
@@ -181,10 +173,10 @@ const styles = theme => ({
 
           <TextField
             id="datetime-local"
-            label="Next appointment"
+            label="Date"
             type="date"
             name='date'
-            defaultValue={this.state.date}
+            defaultValue="2019-05-01"
             className={classes.textField}
             onChange={this.handleChange}
             InputLabelProps={{
@@ -201,7 +193,6 @@ const styles = theme => ({
           className={classes.textField}
           value={this.state.category}
           name="category"
-          placeholder={this.state.category}
           onChange={this.handleChange}
           SelectProps={{
             MenuProps: {
@@ -243,7 +234,7 @@ const styles = theme => ({
               Coffee
             </MenuItem>
 
-            <MenuItem key='outside' value='outside'>
+            <MenuItem key='parks' value='parks'>
               Outdoors
             </MenuItem>
 
@@ -261,14 +252,15 @@ const styles = theme => ({
 
           <TextField
             name='description'
-            placeholder={this.state.description}
+            placeholder="Describe the essence of your date! Why are you excited about this particular outing? What type of adventure partner are you looking for?"
             multiline={true}
-            rows={8}
-            rowsMax={8}
+            rows={4}
+            rowsMax={4}
             className={classes.textArea}
             onChange={this.handleChange}
           />
-
+        <br></br>
+          <MuiThemeProvider theme={theme}>
           <Button
             margin="normal"
             onClick={(ev) => this.handleSubmit(ev)}
@@ -278,8 +270,9 @@ const styles = theme => ({
             color="primary"
             className={classes.submit}
             >
-            Create a Date
+            Submit Edit
           </Button>
+        </MuiThemeProvider>
 
 
         </form>

@@ -17,7 +17,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import TextField from '@material-ui/core/TextField';
 import { Redirect } from 'react-router-dom';
 import red from '@material-ui/core/colors/red';
-import purple from '@material-ui/core/colors/purple';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -75,27 +74,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
     textAlign: 'left'
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
-  },
   textArea: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 600,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
   },
 });
 

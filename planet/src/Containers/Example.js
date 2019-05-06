@@ -10,10 +10,7 @@ import { Redirect } from 'react-router-dom';
 
 const styles = {
   main: {
-    width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: 50,
-    marginRight: 50,
       width: 700,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -34,11 +31,6 @@ const styles = {
 };
 
 class Example extends Component {
-  constructor(props) {
-    super(props)
-
-  }
-
 
   render() {
     if (!this.props.loggedIn) {
@@ -55,7 +47,7 @@ class Example extends Component {
             alt="Contemplative Reptile"
             className={classes.media}
             height="300"
-            image={require("../images/bar5.png")}
+            image={require("../images/bars.png")}
             title="Date Planet"
           />
           <CardContent>

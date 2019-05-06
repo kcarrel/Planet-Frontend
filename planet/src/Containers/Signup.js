@@ -110,27 +110,10 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 2,
     textAlign: 'left'
   },
-  textField: {
-    marginLeft: theme.spacing.unit,
-    marginRight: theme.spacing.unit,
-    width: 200,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
-  },
   textArea: {
     marginLeft: theme.spacing.unit,
     marginRight: theme.spacing.unit,
     width: 600,
-  },
-  dense: {
-    marginTop: 19,
-  },
-  menu: {
-    width: 200,
   },
 });
 
@@ -166,7 +149,6 @@ const styles = theme => ({
 
   handleSubmit(ev) {
     ev.preventDefault()
-    let preferences = []
     //sorting the specified gender of user and matching user's gender preferences for partner before persisting to database
     if (this.state.gender_preference_men && this.state.gender_preference_women && this.state.gender_preference_nonbinary) {
       this.setState({gender_preference: 'all'})

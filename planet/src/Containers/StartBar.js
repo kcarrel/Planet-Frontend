@@ -6,20 +6,11 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom'
 import '../App.css';
-import IconButton from '@material-ui/core/IconButton';
-import IconPlanet from '../images/iconplanet.png'
 
 const styles = {
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginLeft: -12,
-    marginRight: 20,
-  },
-  leftButton: {
-    marginRight: -12,
-    marginRight: 20,  },
 };
 
 

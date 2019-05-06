@@ -11,10 +11,7 @@ import Grid from '@material-ui/core/Grid';
 
 const styles = {
   main: {
-    width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: 50,
-    marginRight: 50,
       width: 700,
       marginLeft: 'auto',
       marginRight: 'auto',

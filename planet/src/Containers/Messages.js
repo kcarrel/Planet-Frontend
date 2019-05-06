@@ -12,10 +12,7 @@ import { Redirect } from 'react-router-dom';
 
 const styles = theme => ({
   main: {
-    width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: 50,
-    marginRight: 50,
       width: 1000,
       height: '100vh',
       marginLeft: 'auto',

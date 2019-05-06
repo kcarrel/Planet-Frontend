@@ -8,10 +8,9 @@ import IconButton from '@material-ui/core/IconButton';
 import IconPlanet from '../images/iconplanet.png'
 import { Link } from 'react-router-dom'
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
-import MoreIcon from '@material-ui/icons/MoreVert';import SearchIcon from '@material-ui/icons/Search';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
 const styles = {
   root: {
@@ -24,9 +23,6 @@ const styles = {
     marginLeft: -12,
     marginRight: 20,
   },
-  leftButton: {
-    marginRight: -12,
-    marginRight: 20,  },
 };
 
 
@@ -87,7 +83,7 @@ class ButtonAppBar extends React.Component {
        onClose={this.handleMenuClose}
      >
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
-         <Button component={Link} to="/datepost" color="inherit">Create a Date</Button>
+         <Button component={Link} to="/create_a_date" color="inherit">Create a Date</Button>
        </MenuItem>
        <MenuItem onClick={(ev) => this.handleMobileMenuClose(ev)}>
          <Button component={Link} to="/example" color="inherit">Date Example</Button>

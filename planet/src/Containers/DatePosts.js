@@ -24,12 +24,6 @@ const theme = createMuiTheme({
 });
 
 
-const eventImages = ['event', 'event1', 'event2']
-const barImages = ['bar', 'bar1', 'bar2', 'bar3', 'bar4', 'bar5']
-const restaurantImages = ['eat', 'eat1', 'eat2', 'eat3', 'eat4', 'eat5', 'eat6', 'eat7']
-const fitnessImages = ['fit', 'fit0', 'fit1', 'fit2', 'fit3', 'fit4', 'fit5']
-const artsImages = ['art0', 'art1', 'art2', 'art3', 'art4', 'art5']
-
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -68,15 +62,12 @@ const styles = theme => ({
     },
   },
   main: {
-    width: 'auto',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    marginLeft: 50,
-    marginRight: 50,
       width: 1000,
-      height: '100vh',
+      height: '90vh',
       marginLeft: 'auto',
       marginRight: 'auto',
   },
@@ -121,7 +112,7 @@ const styles = theme => ({
   },
   gridList: {
    width: 1000,
-   height: '100vh',
+   height: '90vh',
    justify: 'center',
  },
 });
@@ -168,7 +159,7 @@ class DatePosts extends Component {
     } else {
       userPronoun = 'n'
     }
-    profiles.map(profile => {
+    profiles.forEach(profile => {
       let pronoun = ''
       if (profile.pronouns === 'she/her') {
         pronoun = 'w'
@@ -202,8 +193,7 @@ class DatePosts extends Component {
   }
   //
   fetchDates() {
-    let newDates = []
-    this.state.matches.map(match => {
+    this.state.matches.forEach(match => {
     fetch((`https://dateplanet.herokuapp.com/date_posts/${match.user_id}`), {
       method: 'GET',
       headers: {
@@ -273,9 +263,9 @@ class DatePosts extends Component {
                 component="img"
                 alt="Contemplative Reptile"
                 className={classes.media}
-                height="10%"
-                image={require('../images/duck.png')}
+                image={require(`../images/${data.category}.png`)}
                 title="Date Planet"
+                id="picture"
               />
               <CardContent>
                 <Typography component="h2">

@@ -6,14 +6,10 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import planet from '../images/iconplanet.png'
-import { Redirect } from 'react-router-dom';
 
 const styles = {
   main: {
-    width: 'auto',
     display: 'block', // Fix IE 11 issue.
-    marginLeft: 50,
-    marginRight: 50,
       width: 700,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -35,13 +31,9 @@ const styles = {
 };
 
 class Home extends Component {
-  constructor() {
-    super()
-  }
-
 
   render() {
-    
+
     const { classes } = this.props;
     return (
     <main className={classes.main}>

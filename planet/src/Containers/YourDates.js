@@ -11,7 +11,6 @@ import GridListTile from '@material-ui/core/GridListTile';
 import Grid from '@material-ui/core/Grid';
 import GridList from '@material-ui/core/GridList';
 import red from '@material-ui/core/colors/red';
-import purple from '@material-ui/core/colors/purple';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -28,13 +27,10 @@ const styles = theme => ({
     padding: "10px",
   },
   main: {
-    width: 'auto',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    marginLeft: 50,
-    marginRight: 50,
       width: 1000,
       height: '100vh',
       marginLeft: 'auto',
@@ -78,7 +74,7 @@ const styles = theme => ({
   },
   gridList: {
     width: 1000,
-    height: '100vh',
+    height: '90vh',
    justify: 'center',
  },
 });
@@ -132,16 +128,16 @@ class YourDates extends Component {
     return (
       <main className={classes.main}>
 
-        <GridList id="list" cellHeight={200} cellPadding={50} className={classes.gridList}>
+        <GridList id="list" cellHeight={500} cellPadding={20} className={classes.gridList}>
         {this.state.dates.map(data => {
-          return <GridListTile style={{width: 400, height: 400}} key={data.id}>
+          return <GridListTile style={{minWidth: 500, minHeight:500}} key={data.id}>
           <Card className={classes.card}>
               <CardMedia
+                id="picture"
                 component="img"
                 alt="Contemplative Reptile"
                 className={classes.media}
-                height="10%"
-                image={require("../images/duck.png")}
+                image={require(`../images/${data.category}.png`)}
                 title="Date Planet"
               />
               <CardContent>

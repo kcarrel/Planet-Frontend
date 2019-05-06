@@ -17,7 +17,6 @@ import TextField from '@material-ui/core/TextField';
 import MenuItem from '@material-ui/core/MenuItem';
 import { Redirect } from 'react-router-dom';
 import red from '@material-ui/core/colors/red';
-import purple from '@material-ui/core/colors/purple';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
@@ -31,15 +30,12 @@ const theme = createMuiTheme({
 
 const styles = theme => ({
   main: {
-    width: 'auto',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    marginLeft: 50,
-    marginRight: 50,
       width: 1000,
-      height: '100vh',
+      height: '100',
       marginLeft: 'auto',
       marginRight: 'auto',
   },
@@ -82,7 +78,7 @@ const styles = theme => ({
   },
   gridList: {
    width: 1000,
-   height: '100vh',
+   height: '50vh',
    justify: 'center',
  },
  text: {
@@ -120,8 +116,6 @@ class Suggestions extends Component {
 
   //fetch down TicketMaster suggestions
   fetchTicketmaster() {
-    let ticketmaster = localStorage.getItem("ticketmaster")
-    let category = this.state.category
     let location = localStorage.getItem("UserLocation")
     fetch(`https://dateplanet.herokuapp.com/ticketmaster/${location}_${this.state.category}`, {
       headers: {
@@ -242,13 +236,12 @@ class Suggestions extends Component {
           </form>
         </Paper>
 
-        <GridList id="list" cellWidth={900} cellHeight={400} cellPadding={20} className={classes.gridList}>
-
+        <GridList id="list" cellHeight={500} cellPadding={20} className={classes.gridList}>
         { this.state.yelpActive ? (
           this.state.yelp.map(data => {
-          return <GridListTile style={{width: 500}} key={data.id}>
+          return <GridListTile style={{width: 400, height: 400}} key={data.id}>
           <a target="_blank" rel="noopener noreferrer" href={data.url}>
-          <Card style={{width: 500, height:500}} className={classes.card}>
+          <Card style={{width: 400, height:400}} className={classes.card}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -276,9 +269,9 @@ class Suggestions extends Component {
         ) : (
           this.state.ticketmaster.map(data => {
             let url = data.url
-          return <GridListTile style={{width: 500}} key={data.id}>
+          return <GridListTile style={{width: 400, height: 400}} key={data.id}>
           <a target="_blank" rel="noopener noreferrer" href={url}>
-          <Card style={{width: 500, height:500}} className={classes.card}>
+          <Card style={{width: 400, height:400}} className={classes.card}>
             <CardActionArea>
               <CardMedia
                 component="img"

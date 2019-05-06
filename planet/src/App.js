@@ -6,6 +6,8 @@ import Signup from './Containers/Signup'
 import Home from './Containers/Home'
 import DatePost from './Containers/DatePost'
 import Example from './Containers/Example'
+import About from './Containers/About'
+import Contact from './Containers/Contact'
 import Suggestions from './Containers/Suggestions'
 import DatePosts from './Containers/DatePosts'
 import YourDates from './Containers/YourDates'
@@ -16,9 +18,8 @@ import Profile from './Containers/EditProfile'
 import SeeProfile from './Containers/SeeProfile'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import ChatIcon from '@material-ui/icons/Chat';
+import EmailIcon from '@material-ui/icons/Email';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
 
@@ -73,7 +74,7 @@ class App extends Component {
         <Route exact path='/' render={(props) => <Home {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
         <Route exact path='/signup' render={(props) => <Signup {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
         <Route exact path='/login' render={(props) => <Login {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
-        <Route exact path='/datepost' render={(props) => <DatePost {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/create_a_date' render={(props) => <DatePost {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
         <Route exact path='/example' render={(props) => <Example {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
         <Route exact path='/suggestions' render={(props) => <Suggestions {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
         <Route exact path='/dateposts' render={(props) => <DatePosts {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
@@ -83,15 +84,16 @@ class App extends Component {
         <Route exact path='/confirmed' render={(props) => <Confirmed {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
         <Route exact path='/profile' render={(props) => <Profile {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
         <Route exact path='/seeprofile' render={(props) => <SeeProfile {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/about' render={(props) => <About {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
+        <Route exact path='/contact' render={(props) => <Contact {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
 
       </Router>
       <BottomNavigation
         id="bottom"
              showLabels
            >
-             <BottomNavigationAction label="Recents" icon={<RestoreIcon />} />
-             <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} />
-             <BottomNavigationAction label="Nearby" icon={<LocationOnIcon />} />
+             <BottomNavigationAction style={{color: 'white'}} onClick={() => window.location.href='/about'} label="About" icon={<ChatIcon />} />
+             <BottomNavigationAction style={{color: 'white'}} onClick={() => window.location.href='/contact'} label="Contact Us" icon={<EmailIcon />} />
            </BottomNavigation>
     </div>
 

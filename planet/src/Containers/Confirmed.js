@@ -13,15 +13,12 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 
 const styles = theme => ({
   main: {
-    width: 'auto',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
     overflow: 'hidden',
-    marginLeft: 50,
-    marginRight: 50,
       width: 1000,
-      height: '100vh',
+      height: '90vh',
       marginLeft: 'auto',
       marginRight: 'auto',
   },
