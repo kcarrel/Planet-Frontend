@@ -7,6 +7,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import planet from '../images/iconplanet.png'
 
+
 const styles = {
   main: {
     display: 'block',
@@ -38,6 +39,7 @@ class Home extends Component {
     const { classes } = this.props;
     return (
     <main className={classes.main}>
+
       <img className="App-logo" src={planet} alt="Planet"/>\
       <Card className={classes.card}>
         <CardActionArea>

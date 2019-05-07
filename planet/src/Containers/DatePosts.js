@@ -11,6 +11,11 @@ import GridList from '@material-ui/core/GridList';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import FormControl from '@material-ui/core/FormControl';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Paper from '@material-ui/core/Paper';
+
 import red from '@material-ui/core/colors/red';
 import { Link, Redirect } from 'react-router-dom';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -38,6 +43,7 @@ const styles = theme => ({
   paper: {
     marginTop: theme.spacing.unit * 8,
     maxWidth: 400,
+    height: 75,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -59,7 +65,6 @@ const styles = theme => ({
     minHeight: 500,
     alignContent: 'center',
     justify: 'center',
-    marginTop: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -89,7 +94,8 @@ class DatePosts extends Component {
       dates: [],
       confirmed: [],
       haveDates: null,
-      message:''
+      message:'',
+      search: ''
     }
     this.fetchProfiles()
     this.handleInterest = this.handleInterest.bind(this)
@@ -214,15 +220,26 @@ class DatePosts extends Component {
     localStorage.removeItem("profile")
     //from material ui
     const { classes } = this.props;
+
+    let filtered = this.state.dates.filter( date => date.description.toLowerCase().includes(this.state.search.toLowerCase()) || date.title.toLowerCase().includes(this.state.search.toLowerCase()) || date.category.toLowerCase().includes(this.state.search.toLowerCase()))
     return (
       <main className={classes.main}>
+        <Paper className={classes.paper}>
 
+        <form className={classes.form}>
+          <FormControl  margin="normal" >
+            <InputLabel >Title</InputLabel>
+            <Input onChange={this.handleChange} name="search" type="text" id="search" autoComplete="Search" className={classes.textField} margin="normal"
+              />
+          </FormControl>
+        </form>
+        </Paper>
         <GridList id="list" cellHeight={500} cellPadding={20} className={classes.gridList}>
           <GridListTile key="Subheader" cols={2} style={{ height: 100 }}>
           <ListSubheader style={{backgroundColor: 'white', color: 'black'}} component="h1"><h2>Dates available in your area</h2></ListSubheader>
         </GridListTile>
         { this.state.haveDates ? (
-          this.state.dates.map(data => {
+          filtered.map(data => {
           return <GridListTile style={{width: 500, height:500}} className="tile" key={data.id}>
           <Card className={classes.card}>
               <CardMedia
