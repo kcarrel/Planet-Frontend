@@ -9,7 +9,8 @@ import planet from '../images/iconplanet.png'
 
 const styles = {
   main: {
-    display: 'block', // Fix IE 11 issue.
+    display: 'block',
+    overflow: 'scroll', // Fix IE 11 issue.
       width: 700,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -37,11 +38,7 @@ class Home extends Component {
     const { classes } = this.props;
     return (
     <main className={classes.main}>
-
-
       <img className="App-logo" src={planet} alt="Planet"/>\
-
-
       <Card className={classes.card}>
         <CardActionArea>
           <CardContent>

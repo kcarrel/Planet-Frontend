@@ -14,7 +14,6 @@ import TextField from '@material-ui/core/TextField';
 import Description from '@material-ui/icons/Description';
 import { Redirect } from 'react-router-dom';
 import red from '@material-ui/core/colors/red';
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 
@@ -156,6 +155,8 @@ const styles = theme => ({
     <main className={classes.main}>
       <CssBaseline />
       <Paper className={classes.paper}>
+
+
         <Avatar style={{color: 'FF7F68'}} className={classes.avatar}>
           <Description />
         </Avatar>

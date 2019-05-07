@@ -86,7 +86,8 @@ class SeeProfile extends Component {
       biography: '',
       id: '',
       haveDates: null,
-      dates: []
+      dates: [],
+      message: ''
     }
     this.fetchProfile()
   }
@@ -111,6 +112,10 @@ class SeeProfile extends Component {
       })
       this.fetchDates()
     })
+  }
+  
+  handleChange = (ev) => {
+    this.setState({[ev.target.name]: ev.target.value})
   }
 
   fetchDates() {

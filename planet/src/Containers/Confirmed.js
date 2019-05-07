@@ -9,6 +9,16 @@ import Typography from '@material-ui/core/Typography';
 import { Link, Redirect } from 'react-router-dom';
 import GridListTile from '@material-ui/core/GridListTile';
 import CardActionArea from '@material-ui/core/CardActionArea';
+import red from '@material-ui/core/colors/red';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+import GridList from '@material-ui/core/GridList';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: red,
+  },
+});
+
 
 
 const styles = theme => ({
@@ -24,6 +34,7 @@ const styles = theme => ({
   },
   paper: {
     marginTop: theme.spacing.unit * 8,
+    maxWidth: 400,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -42,12 +53,14 @@ const styles = theme => ({
   },
   card: {
     maxWidth: 900,
+    minHeight: 500,
     alignContent: 'center',
     justify: 'center',
     marginTop: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    overflow: 'scroll',
   },
   media: {
     // ⚠️ object-fit is not supported by IE 11.
@@ -60,7 +73,7 @@ const styles = theme => ({
   },
   gridList: {
    width: 1000,
-   height: '100vh',
+   height: '90vh',
    justify: 'center',
  },
 });
@@ -156,12 +169,15 @@ class Confirmed extends Component {
     const { classes } = this.props;
     return (
       <main className={classes.main}>
+        <GridList id="list" cellHeight={500} cellPadding={20} className={classes.gridList}>
+
         { this.state.haveResDates ? (
           this.state.respondedDates.map(data => {
           return <GridListTile style={{width: 400}} key={data.id}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
+                id="picture"
                 component="img"
                 alt="Contemplative Reptile"
                 className={classes.media}
@@ -176,6 +192,7 @@ class Confirmed extends Component {
                 <Typography component="p">
                   {data.date_interest.date_post.description}
                 </Typography>
+                <MuiThemeProvider theme={theme}>
 
                 <Button
                   margin="normal"
@@ -189,6 +206,8 @@ class Confirmed extends Component {
                   >
                   Date's Profile
                 </Button>
+              </MuiThemeProvider>
+
               </CardContent>
             </CardActionArea>
           </Card>
@@ -196,6 +215,53 @@ class Confirmed extends Component {
 
         })
       ) : null }
+
+      { this.state.haveUserDates ? (
+        this.state.userDates.map(data => {
+        return <GridListTile style={{width: 400}} key={data.id}>
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              id="picture"
+              component="img"
+              alt="Contemplative Reptile"
+              className={classes.media}
+              height="10%"
+              image={require(`../images/${data.date_interest.date_post.category}.png`)}
+              title="Date Planet"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                <b>{data.date_interest.date_post.title}</b> on {data.date_interest.date_post.date}
+              </Typography>
+              <Typography component="p">
+                {data.date_interest.date_post.description}
+              </Typography>
+              <MuiThemeProvider theme={theme}>
+
+              <Button
+                margin="normal"
+                onClick={() => localStorage.setItem("profile", data.date_interest.user_id)}
+                component={Link} to="/seeprofile"
+                type="submit"
+                sizeLarge
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                >
+                Date's Profile
+              </Button>
+            </MuiThemeProvider>
+
+            </CardContent>
+          </CardActionArea>
+        </Card>
+      </GridListTile>
+
+      })
+      ) : null }
+    </GridList>
+
      </main>
    );
   }

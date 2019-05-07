@@ -24,7 +24,7 @@ const theme = createMuiTheme({
 
 
 const styles = theme => ({
-  
+
   main: {
     display: 'flex',
     flexWrap: 'wrap',
@@ -87,6 +87,7 @@ class DatePosts extends Component {
     this.state = {
       matches: [],
       dates: [],
+      confirmed: [],
       haveDates: null,
       message:''
     }
@@ -178,6 +179,7 @@ class DatePosts extends Component {
       this.setState({haveDates: true})
     })
   }
+
 
   handleChange = (ev) => {
     this.setState({[ev.target.name]: ev.target.value})
