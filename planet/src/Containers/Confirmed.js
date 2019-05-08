@@ -142,6 +142,7 @@ class Confirmed extends Component {
           })
           .then(response => response.json())
           .then(dates => {
+            if (dates) {
               for (let i = 0; i < dates.length; i++) {
                 if (dates[i].date_interest.date_post !== null) {
                   confirmed.push(dates[i])
@@ -151,7 +152,9 @@ class Confirmed extends Component {
                   haveResDates: true
                 })
               }
+            }
           })
+
       })
     }
 
