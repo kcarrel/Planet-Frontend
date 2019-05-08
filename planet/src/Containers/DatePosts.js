@@ -178,10 +178,10 @@ class DatePosts extends Component {
       }
       let sorted = this.state.dates.sort((a, b) => (a.user_id > b.user_id) ? 1 : -1)
       this.setState({
-        dates: sorted
+        dates: sorted,
+        haveDates: true
         })
       })
-      this.setState({haveDates: true})
     })
   }
 

@@ -12,7 +12,7 @@ import Grid from '@material-ui/core/Grid';
 const styles = {
   main: {
     display: 'block',
-    overflow: 'scroll', // Fix IE 11 issue.
+   // Fix IE 11 issue.
       marginLeft: 'auto',
       marginRight: 'auto',
   },
