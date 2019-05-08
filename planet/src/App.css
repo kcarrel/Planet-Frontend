@@ -10,6 +10,7 @@ body, html {
 
 .App {
   text-align: center;
+  height: 100vh;
 
 }
 
@@ -19,7 +20,7 @@ body, html {
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 60vmin;
+  height: 40vmin;
   pointer-events: none;
   padding-top: 100px;
 }
@@ -71,4 +72,16 @@ body, html {
   to {
     transform: rotate(360deg);
   }
+}
+
+.responsive {
+  width: 10%;
+  height: auto;
+}
+
+
+.homecard {
+  position: absolute;
+  width: 10%;
+  height: auto;
 }

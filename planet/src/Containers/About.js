@@ -5,6 +5,7 @@ import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 
 const styles = {
   main: {
@@ -36,8 +37,18 @@ class About extends Component {
     const { classes } = this.props;
     return (
     <main className={classes.main}>
-
-      <Card className={classes.card}>
+      <Grid
+        container spacing={24}
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+      <Grid
+        item
+        justify="center"
+        alignItems="center"
+        >
+      <Card style={{height: '50%'}}className={classes.card}>
         <CardActionArea>
           <CardContent>
             <Typography gutterBottom variant="h3" component="h2">
@@ -62,6 +73,9 @@ class About extends Component {
         </CardActionArea>
 
       </Card>
+      </Grid>
+    </Grid>
+
     </main>
     );
   }

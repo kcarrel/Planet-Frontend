@@ -6,21 +6,20 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import planet from '../images/iconplanet.png'
+import Grid from '@material-ui/core/Grid';
 
 
 const styles = {
   main: {
     display: 'block',
     overflow: 'scroll', // Fix IE 11 issue.
-      width: 700,
       marginLeft: 'auto',
       marginRight: 'auto',
   },
   card: {
-    maxWidth: 900,
+    minWidth: '300px',
     alignContent: 'center',
     justify: 'center',
-    marginTop: 50,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -39,8 +38,29 @@ class Home extends Component {
     const { classes } = this.props;
     return (
     <main className={classes.main}>
+      <Grid
+        container spacing={24}
+        direction="column"
+        justify="center"
+        alignItems="center"
+      >
+      <Grid
+        item
+        justify="center"
+        alignItems="center"
+        >
+      <img className="App-logo" id="responsive" src={planet} alt="Planet"/>
+      </Grid>
+      <Grid
+        item
 
-      <img className="App-logo" src={planet} alt="Planet"/>\
+        xs={12}
+        s={6}
+        md={4}
+        lg={12}
+        flexJustify="center"
+        alignItems="center"
+        >
       <Card className={classes.card}>
         <CardActionArea>
           <CardContent>
@@ -52,8 +72,9 @@ class Home extends Component {
             </Typography>
           </CardContent>
         </CardActionArea>
-
       </Card>
+      </Grid>
+    </Grid>
     </main>
     );
   }
