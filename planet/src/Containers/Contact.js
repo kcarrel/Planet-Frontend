@@ -50,9 +50,7 @@ class Contact extends Component {
             <Typography gutterBottom variant="h4">
               Contact DatePlanet Creator
             </Typography>
-            <Typography justify="center" margin="10px" component="p">
             <Avatar  alt="profile icon" src={require('../images/profile.png')} className={classes.bigAvatar} />
-            </Typography>
             <Typography margin="10px" component="p">
              Date Planet was created by Katie Carrel as her capstone project for the Flatiron School Immersive Software Engineering Program.
             </Typography>

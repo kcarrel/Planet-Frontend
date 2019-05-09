@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import planet from '../images/iconplanet.png'
 import Grid from '@material-ui/core/Grid';
 
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const styles = {
   main: {
@@ -31,6 +32,8 @@ const styles = {
   },
 };
 
+
+
 class Home extends Component {
 
   render() {
@@ -46,20 +49,16 @@ class Home extends Component {
       >
       <Grid
         item
-        justify="center"
-        alignItems="center"
         >
-      <img className="App-logo" id="responsive" src={planet} alt="Planet"/>
+      <img  className="App-logo" id="responsive" src={planet} alt="Planet"/>
       </Grid>
       <Grid
         item
-
         xs={12}
         s={6}
         md={4}
         lg={12}
-        flexJustify="center"
-        alignItems="center"
+        flexjustify="center"
         >
       <Card className={classes.card}>
         <CardActionArea>

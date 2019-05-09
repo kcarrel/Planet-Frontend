@@ -12,10 +12,10 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import red from '@material-ui/core/colors/red';
 import purple from '@material-ui/core/colors/purple';
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
 import { Redirect } from 'react-router-dom';
+
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const theme = createMuiTheme({
   palette: {

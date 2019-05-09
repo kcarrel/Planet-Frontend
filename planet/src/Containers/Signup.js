@@ -18,9 +18,9 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import { Redirect } from 'react-router-dom';
 import red from '@material-ui/core/colors/red';
 import purple from '@material-ui/core/colors/purple';
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 const theme = createMuiTheme({
   palette: {

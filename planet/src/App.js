@@ -22,6 +22,7 @@ import ChatIcon from '@material-ui/icons/Chat';
 import EmailIcon from '@material-ui/icons/Email';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import './App.css';
+window.__MUI_USE_NEXT_TYPOGRAPHY_VARIANTS__ = true;
 
 
 
