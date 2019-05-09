@@ -88,7 +88,6 @@ class App extends Component {
         <Route exact path='/contact' render={(props) => <Contact {...props} toggleLogin={this.toggleLogin} loggedIn={this.state.loggedIn}/>} />
 
       </Router>
-      {(this.state.loggedIn) ?
         <BottomNavigation
           id="bottom"
           showLabels
@@ -96,12 +95,6 @@ class App extends Component {
             <BottomNavigationAction style={{color: 'white'}} onClick={() => window.location.href='/about'} label="About" icon={<ChatIcon />} />
             <BottomNavigationAction style={{color: 'white'}} onClick={() => window.location.href='/contact'} label="Contact Us" icon={<EmailIcon />} />
           </BottomNavigation>
-        :
-        null
-      }
-
-
-
     </div>
 
 
