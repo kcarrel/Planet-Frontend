@@ -73,7 +73,7 @@ const styles = theme => ({
   },
   gridList: {
    width: 1000,
-   height: '90vh',
+   height: '70vh',
    justify: 'center',
  },
 });
@@ -176,7 +176,7 @@ class Confirmed extends Component {
 
         { this.state.haveResDates ? (
           this.state.respondedDates.map(data => {
-          return <GridListTile style={{width: 400}} key={data.id}>
+          return <GridListTile style={{width: 500, height:500}} className="tile" key={data.id}>
           <Card className={classes.card}>
             <CardActionArea>
               <CardMedia
