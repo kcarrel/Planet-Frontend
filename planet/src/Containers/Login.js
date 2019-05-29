@@ -97,12 +97,14 @@ class Login extends Component {
 
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      hasTyped: false
     }
   }
 
   handleChange = (ev) => {
     this.setState({[ev.target.name]: ev.target.value})
+    this.setState({hasTyped: true})
   }
 
   handleSubmit = (ev) => {
@@ -163,6 +165,8 @@ class Login extends Component {
   render() {
     if (this.props.loggedIn) {
       return <Redirect to='/dateposts'/>
+    } else if (!this.state.hasTyped) {
+      window.alert("Test DatePlanet today using the email address: Test@email.com and password: test")
     }
   const { classes } = this.props;
 
