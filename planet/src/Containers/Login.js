@@ -23,6 +23,8 @@ const theme = createMuiTheme({
   },
 });
 
+
+
 const styles = theme => ({
   container: {
     display: 'flex',
@@ -138,6 +140,37 @@ class Login extends Component {
       })
     }
 
+  handleTestSubmit = (ev) => {
+    ev.preventDefault()
+    //post to user database
+    fetch('https://dateplanet.herokuapp.com/profile', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          email: "Test@email.com",
+          password: "test",
+        }
+      })
+    })
+    .then(r => r.json())
+    .then(json => {
+      if (json.user) {
+        localStorage.setItem('ticketmaster', json.ticketmaster);
+        localStorage.setItem('yelp', json.yelp);
+        localStorage.setItem('UserID', json.user.id);
+        localStorage.setItem('UserEmail', json.user.email);
+        localStorage.setItem('Token', json.token);
+        this.getProfile()
+      } else {
+        alert("User information not found. Please try again.")
+      }
+    })
+  }
+
   getProfile() {
     fetch((`https://dateplanet.herokuapp.com/profiles/${localStorage.getItem('UserID')}`), {
     method: 'GET',
@@ -165,9 +198,7 @@ class Login extends Component {
   render() {
     if (this.props.loggedIn) {
       return <Redirect to='/dateposts'/>
-    } else if (!this.state.hasTyped) {
-      window.alert("Test DatePlanet today using the email address: Test@email.com and password: test")
-    }
+    } 
   const { classes } = this.props;
 
   return (
@@ -190,19 +221,26 @@ class Login extends Component {
             <Input name="password" type="password" id="password" onChange={this.handleChange} value={this.state.password} autoComplete="current-password" />
           </FormControl>
           <MuiThemeProvider theme={theme}>
-
+            <Button
+              onClick={this.handleSubmit}
+              type="submit"
+              fullWidth
+              variant="contained"
+              color="primary"
+              className={classes.submit}
+            >
+              Login
+            </Button>
+          </MuiThemeProvider>
+          
           <Button
-            onClick={this.handleSubmit}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-          >
-            Login
+              onClick={this.handleTestSubmit}
+              fullWidth
+              variant="contained"
+              color="primary"
+            >
+            Login as Test User
           </Button>
-        </MuiThemeProvider>
-
         </form>
       </Paper>
     </main>
