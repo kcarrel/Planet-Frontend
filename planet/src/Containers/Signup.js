@@ -324,7 +324,7 @@ const styles = theme => ({
                   className: classes.menu,
                 },
               }}
-              helperText="Your preferred pronouns"
+              helperText="Your pronouns"
               margin="normal"
             >
             <MenuItem key='she/her' value='she/her'>

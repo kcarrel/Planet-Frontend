@@ -70,7 +70,7 @@ class About extends Component {
               <b>How to use DatePlanet</b>
             </Typography>
             <Typography component="p">
-              See and respond to <a href='/dateposts'>dates</a> available in your area! Dates shown match your user preferences and vice versa.
+              See and respond to <a href='/dateposts'>dates</a> available in your area!
               <a href='/create_a_date'> Create dates</a> that you would like to go on! Need some guidance? Check out our <a href="/example">example</a> or <a href='/suggestions'> date suggestion generator</a>!
               If you post a date that receives interest from other user's you will see a message <a href='/messages'>here</a> that you can choose to deny or accept. Any dates that have been confirmed by both parties will show up <a href='/confirmed'> here</a>!
             </Typography>
